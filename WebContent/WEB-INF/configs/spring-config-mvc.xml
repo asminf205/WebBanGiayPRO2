@@ -52,14 +52,14 @@
 	 	<!-- maxUploadSize=20MB -->
 	 	<property name="maxUploadSize" value="20971520"/>
 	</bean>
-	<context:component-scan base-package="poly.controller,poly.bean"/>
+	<context:component-scan base-package="poly.**"/>
     <!-- Kết nối CSDL -->
 	<bean id="dataSource" 
 	    	class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-			p:driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-			p:url="jdbc:sqlserver://localhost:1433;databaseName=WebBanGiay"
-			p:username="sa"
-			p:password="123">
+			p:driverClassName="com.mysql.jdbc.Driver"
+			p:url="jdbc:mysql://localhost:3306/duan2"
+			p:username="root"
+			p:password="">
 	</bean>
 	
 	<!-- Cấu hình Hibernate -->
@@ -68,13 +68,17 @@
 	    <property name="dataSource" ref="dataSource"/>
 	    <property name="hibernateProperties">
 	      <props>        
-	            <prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>          
+	            <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>          
 	            <prop key="hibernate.show_sql">false</prop>
 	            
 	       </props>
 	       
 	    </property>
-            <property name="packagesToScan" value="poly.bean.SanPham"/>
+            <property name="packagesToScan">
+			<list>
+				<value>poly.bean</value>
+			</list>
+		</property>
             
 	</bean>
 	

@@ -105,7 +105,6 @@ public class SanPham {
 	}
 
 	public SanPham(int ma, String ten, int gia, String hinh, int soluong, String mau, int size, String hangsx) {
-		super();
 		this.ma = ma;
 		this.ten = ten;
 		this.gia = gia;
