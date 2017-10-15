@@ -5,10 +5,17 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.util.ClassUtils;
 
-public abstract class GenericDAO<T> implements IGenericDAO{
+import poly.dao.QueryUtils;
+
+
+public class GenericDAO<T> implements IGenericDAO<T>{
 	
 	SessionFactory sessionFactory;
+	
+	private Class<T> classType;
 	
 	@Autowired
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -22,17 +29,36 @@ public abstract class GenericDAO<T> implements IGenericDAO{
 
 	@Override
 	public Session getSession() {
-		return sessionFactory.getCurrentSession();
+		return sessionFactory.openSession();
 	}
+
+	@Override
+	public void saveOrUpdateObject(T obj) {
+		getSession().saveOrUpdate(obj);
+	}
+
+	@Override
+	public void deleteObject(T obj) {
+		getSession().delete(obj);
+	}
+
+	@Override
+	public T getObj(int a) {
+		return null;
+	}
+
+	@Override
+	public List<T> getAll() {			
+		return getSession().createQuery(QueryUtils.FROM + classType.getSimpleName()).list();
+	}
+
+	public Class<T> getClassType() {
+		return classType;
+	}
+
+	public void setClassType(Class<T> classType) {
+		this.classType = classType;
+	}	
 	
-	public abstract T getObject();
 	
-	public abstract void saveObject(T obj);
-	
-	public abstract void deleteObject(T obj);
-	
-	public abstract List<T> getObjectList();
-	
-	public abstract void updateObject(T obj);
-		
 }
