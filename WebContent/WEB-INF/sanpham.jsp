@@ -5,9 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>sanpham</title>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="test-183602.apps.googleusercontent.com">
+
 </head>
 <body>
 Ten:
 ${requestScope.list.get(0).ten }
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
 </body>
 </html>
