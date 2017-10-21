@@ -1,5 +1,7 @@
 package poly.bean;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="hoadon")
@@ -19,7 +23,8 @@ public class HoaDon {
 	int mahoadon;
 	
 	@Column(name="ngaytao")
-	String ngaytao;
+	@Temporal(TemporalType.DATE)
+	Date ngaytao;
 		
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "makh")
@@ -39,13 +44,12 @@ public class HoaDon {
 		this.mahoadon = mahoadon;
 	}
 
-
-	public String getNgaytao() {
+	public Date getNgaytao() {
 		return ngaytao;
 	}
 
 
-	public void setNgaytao(String ngaytao) {
+	public void setNgaytao(Date ngaytao) {
 		this.ngaytao = ngaytao;
 	}
 
