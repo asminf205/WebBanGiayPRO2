@@ -12,7 +12,7 @@
 	<jsp:include page="menu.jsp"></jsp:include>
 
 	<h1>Products</h1>
-	<form action="quanlysanpham.htm">
+	<form action="search">
 		nhap ten sp:<input type="text" name="txtTenSP" value="" /> <input
 			type="submit" name="action" value="Search" />
 	</form>
@@ -30,7 +30,7 @@
 			<td>Edit</td>
 			<td>Delete</td>
 		</tr>
-		<c:forEach var="rows" items="${listSP}">		
+		<c:forEach var="rows" items="${list}">		
 				<tr>
 					<td>${rows.ma}</td>
 					<td>${rows.ten}</td>
@@ -40,23 +40,11 @@
 					<td>${rows.mau}</td>
 					<td>${rows.size}</td>
 					<td>${rows.hangsx}</td>
-					<c:url var="del" value="ControllerProducts">
-						<c:param name="action" value="Edit" />
-						<c:param name="txtCode" value="${rows.ma}" />
-						<c:param name="txtName" value="${rows.ten}" />
-						<c:param name="txtPrice" value="${rows.gia}" />
-						<c:param name="txtCode" value="${rows.hinh}" />
-						<c:param name="txtName" value="${rows.soluong}" />
-						<c:param name="txtPrice" value="${rows.mau}" />
-						<c:param name="txtCode" value="${rows.size}" />
-						<c:param name="txtName" value="${rows.hangsx}" />
-
-					</c:url>
-					<td><a href="${del}">Edit</td>
-					<td><input type="hidden" name="txtCode" value="${rows.ma}" />
+					
+					<td><a href="edit?ma=${rows.ma}">Edit</td>
+					<td><input type="hidden" name="txtMa" value="${rows.ma}" />
 						<input type="submit" name="action" value="Delete" /></td>
-				</tr>
-			
+				</tr>		
 		</c:forEach>
 	</table>
 	<br />

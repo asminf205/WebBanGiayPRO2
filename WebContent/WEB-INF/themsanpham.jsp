@@ -17,7 +17,7 @@
        <jsp:include page="menu.jsp"></jsp:include>
        
             <h1>New Product!</h1>
-            <form action="newProduct.htm" method="post" enctype="multipart/form-data">       
+            <form action="themsanpham" >       
             Tên sản phẩm: <input type="text" name="txtTen" /> <br/>
             Gía: <input type="text" name="txtGia" /> <br/>                      
             Hinh:<input type="file" name="txtHinh"> <br/>         

@@ -60,7 +60,7 @@
 	    <property name="hibernateProperties">
 	      <props>        
 	            <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>          
-	            <prop key="hibernate.show_sql">false</prop>
+	            <prop key="hibernate.show_sql">true</prop>
 	            
 	       </props>
 	       
@@ -78,7 +78,7 @@
     	class="org.springframework.orm.hibernate4.HibernateTransactionManager" 
        	p:sessionFactory-ref="sessionFactory" />
     <tx:annotation-driven transaction-manager="transactionManager" />
-    <mvc:resources location="css/**" mapping="css/**"></mvc:resources>
+    <mvc:resources location="themes/**" mapping="themes/**"></mvc:resources>
     
 </beans>
 

@@ -8,36 +8,36 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="giay")
+@Table(name = "giay")
 public class SanPham {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ma_giay")
+	@Column(name = "ma_giay")
 	int ma;
-	
-	@Column(name="tengiay")
+
+	@Column(name = "tengiay")
 	String ten;
-	
-	@Column(name="gia")
+
+	@Column(name = "gia")
 	int gia;
-	
-	@Column(name="hinh")
+
+	@Column(name = "hinh")
 	String hinh;
-	
-	@Column(name="soluong")
+
+	@Column(name = "soluong")
 	int soluong;
-	
-	@Column(name="mau")
+
+	@Column(name = "mau")
 	String mau;
-	
-	@Column(name="size")
+
+	@Column(name = "size")
 	int size;
-	
-	@Column(name="hang")	
+
+	@Column(name = "hang")
 	String hangsx;
-	
-	public SanPham() {		
+
+	public SanPham() {
 	}
 
 	public int getMa() {
@@ -101,6 +101,17 @@ public class SanPham {
 	}
 
 	public void setHangsx(String hangsx) {
+		this.hangsx = hangsx;
+	}
+
+	public SanPham(String ten, int gia, String hinh, int soluong, String mau, int size, String hangsx) {
+
+		this.ten = ten;
+		this.gia = gia;
+		this.hinh = hinh;
+		this.soluong = soluong;
+		this.mau = mau;
+		this.size = size;
 		this.hangsx = hangsx;
 	}
 

@@ -1,10 +1,12 @@
 package poly.bean;
 
+import java.io.Serializable;
+
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 
 @Embeddable
-public class ChiTietHoaDon_Identity {
+public class ChiTietHoaDon_Identity implements Serializable{
 
 	@ManyToOne
 	public HoaDon hoadon;
