@@ -34,7 +34,7 @@ public class SanPham {
 	@Column(name="size")
 	int size;
 	
-	@Column(name="hang")
+	@Column(name="hang")	
 	String hangsx;
 	
 	public SanPham() {		

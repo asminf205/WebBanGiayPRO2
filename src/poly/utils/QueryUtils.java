@@ -1,4 +1,4 @@
-package poly.dao;
+package poly.utils;
 
 public class QueryUtils {
 
@@ -6,5 +6,6 @@ public class QueryUtils {
 	
 	public static final String FROM = "from ";
 	
-	public static final String SAN_PHAM = "SanPham";
+	
+		
 }
