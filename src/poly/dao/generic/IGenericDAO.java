@@ -11,7 +11,9 @@ public interface IGenericDAO<T> {
 	
 	 Session getSession();
 	 
-	 void saveOrUpdateObject(T obj);
+	 void saveObject(T obj);
+	 
+	 void updateObject(T obj);
 	 
 	 void deleteObject(T obj);
 	 

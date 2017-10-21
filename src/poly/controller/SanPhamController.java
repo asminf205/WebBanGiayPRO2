@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import poly.bean.SanPham;
 import poly.dao.SanPhamDAO;
 import poly.dao.generic.IGenericDAO;
+import poly.utils.QueryUtils;
 
 @Controller
 
@@ -58,7 +59,7 @@ public class SanPhamController {
 				String cogiay = request.getParameter("txtSize");
 				int size = Integer.parseInt(cogiay);
 				String hangsx = request.getParameter("txtHang");
-				sanphamDAO.saveOrUpdateObject(new SanPham( ten, gia, hinh, soluong,mau,size, hangsx));						
+				sanphamDAO.saveObject(new SanPham( ten, gia, hinh, soluong,mau,size, hangsx));						
 				return "redirect:/";
 			}
 		} catch (Exception e) {
@@ -69,16 +70,17 @@ public class SanPhamController {
 	@RequestMapping(value="/suasanpham", method=RequestMethod.GET)
 	public String suasanpham(Model model,HttpServletRequest request){
 			int ma= Integer.parseInt(request.getParameter("txtMa"));
-			String ten = request.getParameter("txtTen");
-			int gia = Integer.parseInt(request.getParameter("txtGia"));
-			String hinh = "abc.jpg";
+			SanPham sp = sanphamDAO.getObj(ma);
+			sp.setTen(request.getParameter("txtTen"));
+			sp.setGia(Integer.parseInt(request.getParameter("txtGia")));
+			sp.setHinh("abc");
 			String soluonga = request.getParameter("txtSoluong");
-			int soluong = Integer.parseInt(soluonga);
-			String mau = request.getParameter("txtMau");
+			sp.setSoluong(Integer.parseInt(soluonga));
+			sp.setMau(request.getParameter("txtMau"));
 			String cogiay = request.getParameter("txtSize");
-			int size = Integer.parseInt(cogiay);
-			String hangsx = request.getParameter("txtHang");			
-			sanphamDAO.saveOrUpdateObject(new SanPham( ma,ten, gia, hinh, soluong,mau,size, hangsx));						
+			sp.setSize(Integer.parseInt(cogiay));
+			sp.setHangsx(request.getParameter("txtHang"));			
+			sanphamDAO.updateObject(sp);						
 			return "redirect:/";
 }
 	@RequestMapping("/search")

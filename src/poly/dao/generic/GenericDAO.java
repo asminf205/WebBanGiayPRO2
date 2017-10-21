@@ -31,8 +31,13 @@ public class GenericDAO<T> implements IGenericDAO<T>{
 	}
 
 	@Override
-	public void saveOrUpdateObject(T obj) {
-		getSession().saveOrUpdate(obj);
+	public void saveObject(T obj) {
+		getSession().save(obj);
+	}
+
+	@Override
+	public void updateObject(T obj) {
+		getSession().update(obj);
 	}
 
 	@Override
@@ -58,5 +63,7 @@ public class GenericDAO<T> implements IGenericDAO<T>{
 		this.classType = classType;
 	}	
 	
-	
+	public List<T> filterSanPham(String query){
+		return getSession().createQuery(query).list();
+	}
 }

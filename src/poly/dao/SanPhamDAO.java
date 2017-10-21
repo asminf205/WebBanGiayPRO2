@@ -31,4 +31,11 @@ public class SanPhamDAO extends GenericDAO<SanPham>{
 	
 	
 	
+	@Override
+	public List<SanPham> filterSanPham(String query) {
+		return super.filterSanPham(query);
+	}
+	
+	
+	
 }
