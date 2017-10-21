@@ -5,10 +5,8 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.util.ClassUtils;
 
-import poly.dao.QueryUtils;
+import poly.utils.QueryUtils;
 
 
 public class GenericDAO<T> implements IGenericDAO<T>{
