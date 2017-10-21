@@ -20,7 +20,6 @@ public class SanPhamController {
 		
 	@RequestMapping(value="/",method=RequestMethod.GET)
 	public String laysanpham(Model model){
-		
 		model.addAttribute("list", sanphamDAO.getAll());
 		return "sanpham";
 	}

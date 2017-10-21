@@ -31,8 +31,13 @@ public class GenericDAO<T> implements IGenericDAO<T>{
 	}
 
 	@Override
-	public void saveOrUpdateObject(T obj) {
-		getSession().saveOrUpdate(obj);
+	public void saveObject(T obj) {
+		getSession().save(obj);
+	}
+
+	@Override
+	public void updateObject(int obj) {
+		getSession().update(getObj(obj));
 	}
 
 	@Override
