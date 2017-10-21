@@ -44,7 +44,7 @@ public class GenericDAO<T> implements IGenericDAO<T>{
 
 	@Override
 	public T getObj(int a) {
-		return null;
+		return (T) getSession().get(classType, a);
 	}
 
 	@Override
