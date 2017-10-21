@@ -18,4 +18,11 @@ public class SanPhamDAO extends GenericDAO<SanPham>{
 		return super.getAll();
 	}
 	
+	@Override
+	public List<SanPham> filterSanPham(String query) {
+		return super.filterSanPham(query);
+	}
+	
+	
+	
 }

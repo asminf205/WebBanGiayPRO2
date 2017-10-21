@@ -58,5 +58,7 @@ public class GenericDAO<T> implements IGenericDAO<T>{
 		this.classType = classType;
 	}	
 	
-	
+	public List<T> filterSanPham(String query){
+		return getSession().createQuery(query).list();
+	}
 }
