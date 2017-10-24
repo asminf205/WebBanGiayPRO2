@@ -16,26 +16,5 @@ public class SanPhamDAO extends GenericDAO<SanPham>{
 	public List<SanPham> getAll() {
 		setClassType(SanPham.class);
 		return super.getAll();
-	}
-
-	@Override
-	public void saveOrUpdateObject(SanPham obj) {		
-		super.saveOrUpdateObject(obj);
-	}
-
-	@Override
-	public void deleteObject(SanPham obj) {
-		super.deleteObject(obj);
-	}
-	
-	
-	
-	
-	@Override
-	public List<SanPham> filterSanPham(String query) {
-		return super.filterSanPham(query);
-	}
-	
-	
-	
+	}	
 }

@@ -5,17 +5,18 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import poly.utils.QueryUtils;
 
-
+@Transactional
 public class GenericDAO<T> implements IGenericDAO<T>{
 	
+	@Autowired
 	SessionFactory sessionFactory;
 	
 	private Class<T> classType;
 	
-	@Autowired
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
@@ -27,14 +28,14 @@ public class GenericDAO<T> implements IGenericDAO<T>{
 
 	@Override
 	public Session getSession() {
-		return sessionFactory.openSession();
+		return sessionFactory.getCurrentSession();
 	}
 
 	@Override
 	public void saveObject(T obj) {
 		getSession().save(obj);
 	}
-
+	
 	@Override
 	public void updateObject(T obj) {
 		getSession().update(obj);

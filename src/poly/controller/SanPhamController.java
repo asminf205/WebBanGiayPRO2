@@ -1,24 +1,17 @@
 package poly.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import poly.bean.SanPham;
-import poly.dao.SanPhamDAO;
 import poly.dao.generic.IGenericDAO;
-import poly.utils.QueryUtils;
 
 @Controller
-
 public class SanPhamController {
 	
 	@Autowired	

@@ -1,9 +1,5 @@
 package poly.utils;
 
-import org.hibernate.Query;
-
-import com.mysql.jdbc.StringUtils;
-
 public class QueryUtils {
 
 	/* HQL query */
