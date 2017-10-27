@@ -21,6 +21,9 @@ public class QueryUtils {
 	 * @return query {@link String}
 	 */
 	public static String filterQuery(Class classType, Object object){		
+		//code for CommonUtils ( dynamically setAttribute for object )
+		product.getClass().getDeclaredField(elementName).set(product, elementValue);
 		return "";		
 	}
+	
 }
