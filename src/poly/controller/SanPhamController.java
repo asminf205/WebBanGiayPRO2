@@ -60,14 +60,6 @@ public class SanPhamController {
 	@RequestMapping(value = "/themsanpham")
 	public String themsanpham(Model model, HttpServletRequest request) {
 		if (request.getParameter("action").equalsIgnoreCase("Insert")) {
-			String ten = request.getParameter("txtTen");
-			int gia = Integer.parseInt(request.getParameter("txtGia"));
-			String hinh = request.getParameter("txtHinh");
-			String mau = request.getParameter("txtMau");
-			String cogiay = request.getParameter("txtSize");
-			int size = Integer.parseInt(cogiay);
-			String hangsx = request.getParameter("txtHang");
-			sanphamDAO.saveObject(new SanPham(ten, gia, hinh, mau, size, hangsx));
 			SanPham sp = (SanPham) CommonUtils.settingAttributeForObject(new SanPham(), request);
 			sanphamDAO.saveObject(sp);
 			return "redirect:/";
@@ -84,18 +76,8 @@ public class SanPhamController {
 	 */
 	@RequestMapping(value = "/suasanpham", method = RequestMethod.GET)
 	public String suasanpham(Model model, HttpServletRequest request) {		
-		request.getParameterMap().values().iterator().next();
 		int ma = Integer.parseInt(request.getParameter("txtMa"));
 		SanPham sp = sanphamDAO.getObj(ma);
-		CommonUtils.settingAttributeForObject(sp, request);
-		sp.setTen(request.getParameter("txtTen"));
-		sp.setGia(Integer.parseInt(request.getParameter("txtGia")));
-		sp.setHinh(request.getParameter("txtHinh"));
-		sp.setMau(request.getParameter("txtMau"));
-		String cogiay = request.getParameter("txtSize");
-		sp.setSize(Integer.parseInt(cogiay));
-		sp.setHangsx(request.getParameter("txtHang"));
-		sanphamDAO.updateObject(sp);;
 		sp = (SanPham) CommonUtils.settingAttributeForObject(sp, request);
 		sanphamDAO.updateObject(sp);
 		return "redirect:/";
