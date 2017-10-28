@@ -14,7 +14,7 @@ public class KhachHang {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ma_khachhang")
-	int makh;
+	int ma;
 	
 	@Column(name="username")
 	String username;
@@ -37,13 +37,18 @@ public class KhachHang {
 	public KhachHang() {		
 	}
 
-	public int getMakh() {
-		return makh;
+
+
+	public int getMa() {
+		return ma;
 	}
 
-	public void setMakh(int makh) {
-		this.makh = makh;
+
+	public void setMa(int ma) {
+		this.ma = ma;
 	}
+
+
 
 	public String getUsername() {
 		return username;
@@ -93,9 +98,9 @@ public class KhachHang {
 		this.email = email;
 	}
 
-	public KhachHang(int makh, String username, String password, String hoten, String sdt, String diachi,
+	public KhachHang(int ma, String username, String password, String hoten, String sdt, String diachi,
 			String email) {
-		this.makh = makh;
+		this.ma = ma;
 		this.username = username;
 		this.password = password;
 		this.hoten = hoten;
