@@ -2,6 +2,7 @@ package poly.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -76,7 +77,7 @@ public class SanPhamController {
 	 */
 	@RequestMapping(value = "/suasanpham", method = RequestMethod.GET)
 	public String suasanpham(Model model, HttpServletRequest request) {		
-		int ma = Integer.parseInt(request.getParameter("txtMa"));
+		int ma = Integer.parseInt(request.getParameter("ma"));
 		SanPham sp = sanphamDAO.getObj(ma);
 		sp = (SanPham) CommonUtils.settingAttributeForObject(sp, request);
 		sanphamDAO.updateObject(sp);
@@ -94,7 +95,7 @@ public class SanPhamController {
 		
 		int ma = Integer.parseInt(request.getParameter("ma"));
 		SanPham sp = sanphamDAO.getObj(ma);
-		if(java.util.Objects.isNull(session.getAttribute("listCart"))){
+		if(Objects.isNull(session.getAttribute("listCart"))){
 			list=editSession(sp,new ArrayList<>());
 		}else{
 			list=editSession(sp, (List<SanPham>)session.getAttribute("listCart"));
