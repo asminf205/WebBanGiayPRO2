@@ -67,4 +67,6 @@ public class GenericDAO<T> implements IGenericDAO<T>{
 	public List<T> filterSanPham(String query){
 		return getSession().createQuery(query).list();
 	}
+	
+	
 }

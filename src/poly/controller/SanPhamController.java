@@ -2,6 +2,7 @@ package poly.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import poly.bean.SanPham;
+import poly.constants.SneakerGlobalConstant;
 import poly.dao.generic.IGenericDAO;
 import poly.utils.CommonUtils;
 
@@ -29,7 +31,7 @@ public class SanPhamController {
 	 * @param request {@link HttpServletRequest}
 	 * @return {@link String}
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/quanlysanpham", method = RequestMethod.GET)
 	public String laysanpham(Model model, HttpServletRequest request) {
 		model.addAttribute("list", sanphamDAO.getAll());
 		return "quanlysanpham";
@@ -44,7 +46,7 @@ public class SanPhamController {
 	 */
 	@RequestMapping(value = "/edit")
 	public String editSP(HttpServletRequest request, Model model) {
-		int ma = Integer.parseInt(request.getParameter("ma"));
+		int ma = Integer.parseInt(request.getParameter(SneakerGlobalConstant.OBJECT_ID));
 		SanPham sp = sanphamDAO.getObj(ma);
 		request.setAttribute("SP", sp);
 		return "editproduct";
@@ -76,7 +78,7 @@ public class SanPhamController {
 	 */
 	@RequestMapping(value = "/suasanpham", method = RequestMethod.GET)
 	public String suasanpham(Model model, HttpServletRequest request) {		
-		int ma = Integer.parseInt(request.getParameter("txtMa"));
+		int ma = Integer.parseInt(request.getParameter(SneakerGlobalConstant.OBJECT_ID));
 		SanPham sp = sanphamDAO.getObj(ma);
 		sp = (SanPham) CommonUtils.settingAttributeForObject(sp, request);
 		sanphamDAO.updateObject(sp);
@@ -92,34 +94,23 @@ public class SanPhamController {
 	public String cart(HttpServletRequest request, Model model,HttpSession session) {
 		List<SanPham> list = null;
 		
-		int ma = Integer.parseInt(request.getParameter("ma"));
+		int ma = Integer.parseInt(request.getParameter(SneakerGlobalConstant.OBJECT_ID));
 		SanPham sp = sanphamDAO.getObj(ma);
-		
-		if(java.util.Objects.isNull(session)){
-			session=request.getSession();
-		}
-		if(java.util.Objects.isNull(session.getAttribute("listCart"))){
+		if(Objects.isNull(session.getAttribute("listCart"))){
 			list=editSession(sp,new ArrayList<>());
 		}else{
 			list=editSession(sp, (List<SanPham>)session.getAttribute("listCart"));
 		}
-		
-		
 		session.setAttribute("listCart", list);
 		return "Cart";
-	}
-	
-	@RequestMapping("/index")
-	public String index(Model model) {
-		model.addAttribute("listSP2", sanphamDAO.getAll());
-		return "index";
 	}
 	
 	List<SanPham> editSession(SanPham sp,List<SanPham> lstSp){
 		for(int i=0;i<lstSp.size();i++){
 			if(lstSp.get(i).getMa()==sp.getMa()){
+				int dongia = lstSp.get(i).getGia()/lstSp.get(i).getSoluong();
 				lstSp.get(i).setSoluong(lstSp.get(i).getSoluong()+1);
-				
+				lstSp.get(i).setGia(lstSp.get(i).getSoluong()* dongia);
 				return lstSp;
 			}
 		}

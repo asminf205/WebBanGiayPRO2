@@ -51,7 +51,7 @@
 		
 			  <ul class="thumbnails">
 			  
-			  <c:forEach var="rows" items="${listSP2}">
+			  <c:forEach var="rows" items="${list}">
 			
 			 <li class="span3">
 				  <div class="thumbnail">
