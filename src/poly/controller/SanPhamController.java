@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import poly.bean.SanPham;
+import poly.constants.SneakerGlobalConstant;
 import poly.dao.generic.IGenericDAO;
 import poly.utils.CommonUtils;
 
@@ -45,7 +46,7 @@ public class SanPhamController {
 	 */
 	@RequestMapping(value = "/edit")
 	public String editSP(HttpServletRequest request, Model model) {
-		int ma = Integer.parseInt(request.getParameter("ma"));
+		int ma = Integer.parseInt(request.getParameter(SneakerGlobalConstant.OBJECT_ID));
 		SanPham sp = sanphamDAO.getObj(ma);
 		request.setAttribute("SP", sp);
 		return "editproduct";
@@ -77,7 +78,7 @@ public class SanPhamController {
 	 */
 	@RequestMapping(value = "/suasanpham", method = RequestMethod.GET)
 	public String suasanpham(Model model, HttpServletRequest request) {		
-		int ma = Integer.parseInt(request.getParameter("ma"));
+		int ma = Integer.parseInt(request.getParameter(SneakerGlobalConstant.OBJECT_ID));
 		SanPham sp = sanphamDAO.getObj(ma);
 		sp = (SanPham) CommonUtils.settingAttributeForObject(sp, request);
 		sanphamDAO.updateObject(sp);
@@ -93,7 +94,7 @@ public class SanPhamController {
 	public String cart(HttpServletRequest request, Model model,HttpSession session) {
 		List<SanPham> list = null;
 		
-		int ma = Integer.parseInt(request.getParameter("ma"));
+		int ma = Integer.parseInt(request.getParameter(SneakerGlobalConstant.OBJECT_ID));
 		SanPham sp = sanphamDAO.getObj(ma);
 		if(Objects.isNull(session.getAttribute("listCart"))){
 			list=editSession(sp,new ArrayList<>());
