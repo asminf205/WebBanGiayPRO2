@@ -7,4 +7,5 @@ public class SneakerGlobalConstant {
 	}
 
 	public static final String OBJECT_ID = "ma";
+	public static final String OBJECT_NAME = "ten";
 }

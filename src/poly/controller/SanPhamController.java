@@ -80,7 +80,7 @@ public class SanPhamController {
 	 */
 	@RequestMapping(value = "/sanpham/moi", method=RequestMethod.POST)
 	public String addProduct(HttpServletRequest request,@RequestParam MultipartFile image, Model model){
-		String imgName = request.getParameter("ten")+".jpg";
+		String imgName = request.getParameter(SneakerGlobalConstant.OBJECT_NAME)+".jpg";
 		try {
 			image.transferTo(new File(context.getRealPath("/themes/images/products/")+imgName));
 		} catch (IllegalStateException | IOException e) {
