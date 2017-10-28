@@ -21,9 +21,7 @@ public class QueryUtils {
 	 * @return query {@link String}
 	 */
 	public static String filterQuery(Class classType, Object object){		
-		//code for CommonUtils ( dynamically setAttribute for object )
-		
-		return "";		
+		return "";
 	}
 	
 }

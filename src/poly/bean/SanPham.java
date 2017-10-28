@@ -57,14 +57,6 @@ public class SanPham {
 		this.ten = ten;
 	}
 
-	public float getGia() {
-		return gia;
-	}
-
-	public void setGia(int gia) {
-		this.gia = gia;
-	}
-
 	public String getHinh() {
 		return hinh;
 	}
@@ -115,14 +107,5 @@ public class SanPham {
 		this.hangsx = hangsx;
 	}
 
-	public SanPham(int ma, String ten, int gia, String hinh, int soluong, String mau, int size, String hangsx) {
-		this.ma = ma;
-		this.ten = ten;
-		this.gia = gia;
-		this.hinh = hinh;
-		this.soluong = soluong;
-		this.mau = mau;
-		this.size = size;
-		this.hangsx = hangsx;
-	}
+	
 }

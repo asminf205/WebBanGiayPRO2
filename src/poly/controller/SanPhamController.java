@@ -1,7 +1,5 @@
 package poly.controller;
 
-import java.util.Enumeration;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,16 +42,8 @@ public class SanPhamController {
 	@RequestMapping(value = "/themsanpham")
 	public String themsanpham(Model model, HttpServletRequest request) {
 		if (request.getParameter("action").equalsIgnoreCase("Insert")) {
-			String ten = request.getParameter("txtTen");
-			int gia = Integer.parseInt(request.getParameter("txtGia"));
-			String hinh = request.getParameter("txtHinh");
-			String soluonga = request.getParameter("txtSoluong");
-			int soluong = Integer.parseInt(soluonga);
-			String mau = request.getParameter("txtMau");
-			String cogiay = request.getParameter("txtSize");
-			int size = Integer.parseInt(cogiay);
-			String hangsx = request.getParameter("txtHang");
-			sanphamDAO.saveObject(new SanPham(ten, gia, hinh, soluong, mau, size, hangsx));
+			SanPham sp = (SanPham) CommonUtils.settingAttributeForObject(new SanPham(), request);
+			sanphamDAO.saveObject(sp);
 			return "redirect:/";
 		}
 		return "themsanpham";
@@ -65,16 +55,7 @@ public class SanPhamController {
 		
 		int ma = Integer.parseInt(request.getParameter("txtMa"));
 		SanPham sp = sanphamDAO.getObj(ma);
-		CommonUtils.settingAttributeForObject(sp, request);
-		sp.setTen(request.getParameter("txtTen"));
-		sp.setGia(Integer.parseInt(request.getParameter("txtGia")));
-		sp.setHinh("abc");
-		String soluonga = request.getParameter("txtSoluong");
-		sp.setSoluong(Integer.parseInt(soluonga));
-		sp.setMau(request.getParameter("txtMau"));
-		String cogiay = request.getParameter("txtSize");
-		sp.setSize(Integer.parseInt(cogiay));
-		sp.setHangsx(request.getParameter("txtHang"));
+		sp = (SanPham) CommonUtils.settingAttributeForObject(sp, request);
 		sanphamDAO.updateObject(sp);
 		return "redirect:/";
 	}
