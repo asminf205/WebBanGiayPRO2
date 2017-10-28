@@ -20,14 +20,14 @@ public class HoaDon {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ma_hoadon")
-	int mahoadon;
+	int ma;
 	
 	@Column(name="ngaytao")
 	@Temporal(TemporalType.DATE)
 	Date ngaytao;
 		
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "makh")
+	@JoinColumn(name = "ma")
 	KhachHang khachhang;
 	
 	
@@ -35,14 +35,15 @@ public class HoaDon {
 	}
 
 
-	public int getMahoadon() {
-		return mahoadon;
+	public int getMa() {
+		return ma;
 	}
 
 
-	public void setMahoadon(int mahoadon) {
-		this.mahoadon = mahoadon;
+	public void setMa(int ma) {
+		this.ma = ma;
 	}
+
 
 	public Date getNgaytao() {
 		return ngaytao;
