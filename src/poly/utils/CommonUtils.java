@@ -27,6 +27,9 @@ public class CommonUtils {
 		Field[] objFields = objClass.getDeclaredFields();
 		int i = 0;
 		while (iter.hasNext()){
+			if(i >= objFields.length){
+				return obj;
+			}
 			objFields[i].setAccessible(true);
 			try {
 				objFields[i].set(obj,getFieldValueByType(iter.next()));
@@ -35,7 +38,7 @@ public class CommonUtils {
 				logger.info(e.getMessage());				
 			}
 		}
-		return obj;
+		return null;
 	}
 	
 	/**

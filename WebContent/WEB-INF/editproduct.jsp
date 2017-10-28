@@ -26,7 +26,7 @@
             Màu: <input type="text" name="txtMau" value="${SP.mau}"/> <br/>
             Size: <input type="text" name="txtSize" value="${SP.size}"/> <br/>
             Hãng SX: <input type="text" name="txtHang" value="${SP.hangsx}"/> <br/>           
-            <input type="submit" name="action" value="Edit"/>
+            <input type="submit" value="Edit"/>
 
         </form>
        

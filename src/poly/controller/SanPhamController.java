@@ -73,7 +73,6 @@ public class SanPhamController {
 	@RequestMapping(value = "/suasanpham", method = RequestMethod.GET)
 	public String suasanpham(Model model, HttpServletRequest request) {		
 		request.getParameterMap().values().iterator().next();
-		
 		int ma = Integer.parseInt(request.getParameter("txtMa"));
 		SanPham sp = sanphamDAO.getObj(ma);
 		sp = (SanPham) CommonUtils.settingAttributeForObject(sp, request);
