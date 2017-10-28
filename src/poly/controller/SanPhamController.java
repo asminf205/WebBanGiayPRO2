@@ -29,7 +29,7 @@ public class SanPhamController {
 	 * @param request {@link HttpServletRequest}
 	 * @return {@link String}
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/quanlysanpham", method = RequestMethod.GET)
 	public String laysanpham(Model model, HttpServletRequest request) {
 		model.addAttribute("list", sanphamDAO.getAll());
 		return "quanlysanpham";
@@ -101,12 +101,6 @@ public class SanPhamController {
 		}
 		session.setAttribute("listCart", list);
 		return "Cart";
-	}
-	
-	@RequestMapping("/index")
-	public String index(Model model) {
-		model.addAttribute("listSP2", sanphamDAO.getAll());
-		return "index";
 	}
 	
 	List<SanPham> editSession(SanPham sp,List<SanPham> lstSp){
