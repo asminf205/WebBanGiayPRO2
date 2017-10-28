@@ -97,6 +97,14 @@ public class SanPham {
 		this.hangsx = hangsx;
 	}
 
+	public int getGia() {
+		return gia;
+	}
+
+	public void setGia(int gia) {
+		this.gia = gia;
+	}
+
 	public SanPham(String ten, int gia, String hinh, int soluong, String mau, int size, String hangsx) {
 		this.ten = ten;
 		this.gia = gia;
