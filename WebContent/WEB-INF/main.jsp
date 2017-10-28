@@ -57,12 +57,13 @@
 				  <div class="thumbnail">
 					<a  href="product_details.html"><img src="${pageContext.request.contextPath}/themes/images/products/${rows.hinh}" width="20%" height="20%" alt=""/></a>
 					<div class="caption">
+					<input type="hidden" name="txtMa" value="${rows.ma}" /> 
 					  <h5>${rows.ten}</h5>
 					  <p> 
-						${rows.hangsx} 
+						Nhà Sản Xuất: ${rows.hangsx} 
 					  </p>
 					 
-					  <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">${rows.gia}</a></h4>
+					  <h4 style="text-align:center"><a class="btn" href="cart?ma=${rows.ma}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="cart?ma=${rows.ma}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">${rows.gia}</a></h4>
 					</div>
 				  </div>
 			</li>

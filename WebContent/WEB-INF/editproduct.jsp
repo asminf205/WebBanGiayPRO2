@@ -22,7 +22,6 @@
             Tên sản phẩm: <input type="text" name="txtTen" value="${SP.ten}"/> <br/>
             Gía: <input type="text" name="txtGia" value="${SP.gia}"/> <br/>                      
             Hinh:<input type="file" name="txtHinh" value="${SP.hinh}"> <br/>         
-            Số lượng: <input type="text" name="txtSoluong" value="${SP.soluong}"/> <br/>
             Màu: <input type="text" name="txtMau" value="${SP.mau}"/> <br/>
             Size: <input type="text" name="txtSize" value="${SP.size}"/> <br/>
             Hãng SX: <input type="text" name="txtHang" value="${SP.hangsx}"/> <br/>           

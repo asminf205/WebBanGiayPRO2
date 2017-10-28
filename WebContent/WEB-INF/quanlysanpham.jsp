@@ -23,7 +23,6 @@
 			<td>TenSP</td>
 			<td>Gia</td>
 			<td>HinhAnh</td>
-			<td>SoLuong</td>
 			<td>Mau</td>
 			<td>Size</td>
 			<td>Hang SX</td>
@@ -36,7 +35,6 @@
 					<td>${rows.ten}</td>
 					<td>${rows.gia}</td>
 					<td><img src="${pageContext.request.contextPath}/themes/images/products/${rows.hinh}" width="20%" height="20%"/>
-					<td>${rows.soluong}</td>
 					<td>${rows.mau}</td>
 					<td>${rows.size}</td>
 					<td>${rows.hangsx}</td>

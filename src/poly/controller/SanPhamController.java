@@ -1,8 +1,10 @@
 package poly.controller;
 
-import java.util.Enumeration;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,13 +49,11 @@ public class SanPhamController {
 			String ten = request.getParameter("txtTen");
 			int gia = Integer.parseInt(request.getParameter("txtGia"));
 			String hinh = request.getParameter("txtHinh");
-			String soluonga = request.getParameter("txtSoluong");
-			int soluong = Integer.parseInt(soluonga);
 			String mau = request.getParameter("txtMau");
 			String cogiay = request.getParameter("txtSize");
 			int size = Integer.parseInt(cogiay);
 			String hangsx = request.getParameter("txtHang");
-			sanphamDAO.saveObject(new SanPham(ten, gia, hinh, soluong, mau, size, hangsx));
+			sanphamDAO.saveObject(new SanPham(ten, gia, hinh, mau, size, hangsx));
 			return "redirect:/";
 		}
 		return "themsanpham";
@@ -68,19 +68,57 @@ public class SanPhamController {
 		CommonUtils.settingAttributeForObject(sp, request);
 		sp.setTen(request.getParameter("txtTen"));
 		sp.setGia(Integer.parseInt(request.getParameter("txtGia")));
-		sp.setHinh("abc");
-		String soluonga = request.getParameter("txtSoluong");
-		sp.setSoluong(Integer.parseInt(soluonga));
+		sp.setHinh(request.getParameter("txtHinh"));
 		sp.setMau(request.getParameter("txtMau"));
 		String cogiay = request.getParameter("txtSize");
 		sp.setSize(Integer.parseInt(cogiay));
 		sp.setHangsx(request.getParameter("txtHang"));
-		sanphamDAO.updateObject(sp);
+		sanphamDAO.updateObject(sp);;
 		return "redirect:/";
 	}
 
 	@RequestMapping("/search")
 	public String search() {
 		return "quanlysanpham";
+	}
+	
+	@RequestMapping(value = "/cart")
+	public String cart(HttpServletRequest request, Model model,HttpSession session) {
+		List<SanPham> list = null;
+		
+		int ma = Integer.parseInt(request.getParameter("ma"));
+		SanPham sp = sanphamDAO.getObj(ma);
+		
+		if(java.util.Objects.isNull(session)){
+			session=request.getSession();
+		}
+		if(java.util.Objects.isNull(session.getAttribute("listCart"))){
+			list=editSession(sp,new ArrayList<>());
+		}else{
+			list=editSession(sp, (List<SanPham>)session.getAttribute("listCart"));
+		}
+		
+		
+		session.setAttribute("listCart", list);
+		return "Cart";
+	}
+	
+	@RequestMapping("/index")
+	public String index(Model model) {
+		model.addAttribute("listSP2", sanphamDAO.getAll());
+		return "index";
+	}
+	
+	List<SanPham> editSession(SanPham sp,List<SanPham> lstSp){
+		for(int i=0;i<lstSp.size();i++){
+			if(lstSp.get(i).getMa()==sp.getMa()){
+				lstSp.get(i).setSoluong(lstSp.get(i).getSoluong()+1);
+				
+				return lstSp;
+			}
+		}
+		sp.setSoluong(1);
+		lstSp.add(sp);
+		return lstSp;
 	}
 }
