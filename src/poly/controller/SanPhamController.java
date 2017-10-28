@@ -1,17 +1,23 @@
 package poly.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import poly.bean.SanPham;
 import poly.constants.SneakerGlobalConstant;
@@ -23,6 +29,9 @@ public class SanPhamController {
 
 	@Autowired
 	IGenericDAO<SanPham> sanphamDAO;
+	
+	@Autowired
+	ServletContext context;
 
 	/**
 	 * Show All Product
@@ -53,22 +62,34 @@ public class SanPhamController {
 	}
 
 	/**
-	 *Execute Add Product Action 
+	 *Show themsanpham.jsp 
 	 * 
-	 * @param model {@link Model}
-	 * @param request {@link HttpServletRequest}
-	 * @return {@link String}
 	 */
 	@RequestMapping(value = "/themsanpham")
-	public String themsanpham(Model model, HttpServletRequest request) {
-		if (request.getParameter("action").equalsIgnoreCase("Insert")) {
-			SanPham sp = (SanPham) CommonUtils.settingAttributeForObject(new SanPham(), request);
-			sanphamDAO.saveObject(sp);
-			return "redirect:/";
-		}
+	public String themsanpham() {
 		return "themsanpham";
 	}
 	
+	/**
+	 * Execute Add New Product
+	 * 
+	 * @param request {@link HttpServletRequest}
+	 * @param image {@link MultipartFile}
+	 * @param model {@link Model}
+	 * @return {@link String}
+	 */
+	@RequestMapping(value = "/sanpham/moi", method=RequestMethod.POST)
+	public String addProduct(HttpServletRequest request,@RequestParam MultipartFile image, Model model){
+		String imgName = request.getParameter("ten")+".jpg";
+		try {
+			image.transferTo(new File(context.getRealPath("/themes/images/products/")+imgName));
+		} catch (IllegalStateException | IOException e) {
+			Logger.getLogger(this.getClass()).info(e.getMessage());
+		}
+			SanPham sp = (SanPham) CommonUtils.settingAttributeForObject(new SanPham(), request);			
+			sanphamDAO.saveObject(sp);
+			return "redirect:/";
+	}
 	/**
 	 * Execute Edit Product Action
 	 * 
