@@ -94,17 +94,11 @@ public class SanPhamController {
 		
 		int ma = Integer.parseInt(request.getParameter("ma"));
 		SanPham sp = sanphamDAO.getObj(ma);
-		
-		if(java.util.Objects.isNull(session)){
-			session=request.getSession();
-		}
 		if(java.util.Objects.isNull(session.getAttribute("listCart"))){
 			list=editSession(sp,new ArrayList<>());
 		}else{
 			list=editSession(sp, (List<SanPham>)session.getAttribute("listCart"));
 		}
-		
-		
 		session.setAttribute("listCart", list);
 		return "Cart";
 	}
@@ -118,8 +112,9 @@ public class SanPhamController {
 	List<SanPham> editSession(SanPham sp,List<SanPham> lstSp){
 		for(int i=0;i<lstSp.size();i++){
 			if(lstSp.get(i).getMa()==sp.getMa()){
+				int dongia = lstSp.get(i).getGia()/lstSp.get(i).getSoluong();
 				lstSp.get(i).setSoluong(lstSp.get(i).getSoluong()+1);
-				
+				lstSp.get(i).setGia(lstSp.get(i).getSoluong()* dongia);
 				return lstSp;
 			}
 		}

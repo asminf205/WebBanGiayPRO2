@@ -38,7 +38,7 @@ public class CommonUtils {
 				logger.info(e.getMessage());				
 			}
 		}
-		return null;
+		return obj;
 	}
 	
 	/**
