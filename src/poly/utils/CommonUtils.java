@@ -14,17 +14,53 @@ public class CommonUtils {
 		throw new IllegalStateException("Utility class");
 	}
 
+	/**
+	 * this method used for setting properties from client request for obj
+	 * 
+	 * @param obj {@link Object}
+	 * @param request {@link HttpServletRequest}
+	 * @return obj {@link Object}
+	 */
 	public static Object settingAttributeForObject(Object obj, HttpServletRequest request){
-		Iterator<?> iter = request.getParameterMap().values().iterator();
-		while(iter.hasNext()){
-			Class<?> objClass = obj.getClass();
-			Field[] objFields = objClass.getDeclaredFields();
+		Iterator<String[]> iter = request.getParameterMap().values().iterator();
+		Class<?> objClass = obj.getClass();		
+		Field[] objFields = objClass.getDeclaredFields();
+		int i = 0;
+		while (iter.hasNext()){
+			if(i >= objFields.length){
+				return obj;
+			}
+			objFields[i].setAccessible(true);
 			try {
-				objFields[0].set(obj, iter.next());
+				objFields[i].set(obj,getFieldValueByType(iter.next()));
+				i+=1;
 			} catch (IllegalArgumentException | IllegalAccessException e) {
-				logger.info("Illegal Exception");
+				logger.info(e.getMessage());				
 			}
 		}
-		return "";
+		return null;
+	}
+	
+	/**
+	 * this method is used for getting field value by its type
+	 * @param obj {@link String[]}
+	 * @return {@link Object}
+	 */
+	private static Object getFieldValueByType(String[] obj){		
+		if(checkInteger(obj[0])){
+			return new Integer(obj[0]);
+		}
+		return obj[0];
+	}
+	
+	/**
+	 * 
+	 * @param str {@link String}
+	 * @return {@link boolean}
+	 */
+	private static boolean checkInteger(String str){
+		try{new Integer(str); return true;}catch(Exception e){
+			return false;
+		}
 	}
 }

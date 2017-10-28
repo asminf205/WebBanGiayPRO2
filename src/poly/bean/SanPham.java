@@ -124,8 +124,8 @@ public class SanPham {
 		this.hangsx = hangsx;
 	}
 
-	public SanPham(int ma, String ten, int gia, String hinh, int soluong, String mau, int size, String hangsx) {
-		this.ma = ma;
+
+	public SanPham(String ten, int gia, String hinh, int soluong, String mau, int size, String hangsx) {
 		this.ten = ten;
 		this.gia = gia;
 		this.hinh = hinh;

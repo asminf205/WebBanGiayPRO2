@@ -25,9 +25,9 @@ public class SanPhamController {
 	/**
 	 * Show All Product
 	 * 
-	 * @param model
-	 * @param request
-	 * @return
+	 * @param model {@link Model}
+	 * @param request {@link HttpServletRequest}
+	 * @return {@link String}
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String laysanpham(Model model, HttpServletRequest request) {
@@ -35,6 +35,13 @@ public class SanPhamController {
 		return "quanlysanpham";
 	}
 
+	/**
+	 * show edit page for admin
+	 * 
+	 * @param request {@link HttpServletRequest}
+	 * @param model {@link Model}
+	 * @return {@link String}
+	 */
 	@RequestMapping(value = "/edit")
 	public String editSP(HttpServletRequest request, Model model) {
 		int ma = Integer.parseInt(request.getParameter("ma"));
@@ -43,6 +50,13 @@ public class SanPhamController {
 		return "editproduct";
 	}
 
+	/**
+	 *Execute Add Product Action 
+	 * 
+	 * @param model {@link Model}
+	 * @param request {@link HttpServletRequest}
+	 * @return {@link String}
+	 */
 	@RequestMapping(value = "/themsanpham")
 	public String themsanpham(Model model, HttpServletRequest request) {
 		if (request.getParameter("action").equalsIgnoreCase("Insert")) {
@@ -54,15 +68,23 @@ public class SanPhamController {
 			int size = Integer.parseInt(cogiay);
 			String hangsx = request.getParameter("txtHang");
 			sanphamDAO.saveObject(new SanPham(ten, gia, hinh, mau, size, hangsx));
+			SanPham sp = (SanPham) CommonUtils.settingAttributeForObject(new SanPham(), request);
+			sanphamDAO.saveObject(sp);
 			return "redirect:/";
 		}
 		return "themsanpham";
 	}
-
+	
+	/**
+	 * Execute Edit Product Action
+	 * 
+	 * @param model {@link Model}
+	 * @param request {@link HttpServletRequest}
+	 * @return {@link String}
+	 */
 	@RequestMapping(value = "/suasanpham", method = RequestMethod.GET)
 	public String suasanpham(Model model, HttpServletRequest request) {		
 		request.getParameterMap().values().iterator().next();
-		
 		int ma = Integer.parseInt(request.getParameter("txtMa"));
 		SanPham sp = sanphamDAO.getObj(ma);
 		CommonUtils.settingAttributeForObject(sp, request);
@@ -74,6 +96,8 @@ public class SanPhamController {
 		sp.setSize(Integer.parseInt(cogiay));
 		sp.setHangsx(request.getParameter("txtHang"));
 		sanphamDAO.updateObject(sp);;
+		sp = (SanPham) CommonUtils.settingAttributeForObject(sp, request);
+		sanphamDAO.updateObject(sp);
 		return "redirect:/";
 	}
 
