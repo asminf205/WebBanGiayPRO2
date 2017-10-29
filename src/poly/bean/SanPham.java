@@ -8,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.hibernate.annotations.GenericGenerator;
-
 @Entity
 @Table(name = "giay")
 public class SanPham {
@@ -125,7 +123,6 @@ public class SanPham {
 		this.hangsx = hangsx;
 	}
 
-
 	public SanPham(String ten, int gia, String hinh, int soluong, String mau, int size, String hangsx) {
 		this.ten = ten;
 		this.gia = gia;
@@ -135,5 +132,4 @@ public class SanPham {
 		this.size = size;
 		this.hangsx = hangsx;
 	}
-	
 }
