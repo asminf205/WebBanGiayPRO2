@@ -21,6 +21,6 @@ public interface IGenericDAO<T> {
 	 
 	 List<T> getAll();
 		 
-	
+	List<T> executeQuery(String query);
 	
 }

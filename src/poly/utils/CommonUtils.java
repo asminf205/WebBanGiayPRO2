@@ -25,7 +25,8 @@ public class CommonUtils {
 	 * @return obj {@link Object}
 	 */
 	public static Object settingAttributeForObject(Object obj, HttpServletRequest request) {
-		Map<String, String[]> requestParams = request.getParameterMap();		
+		Map<String, String[]> requestParams = request.getParameterMap();	
+		
 		Field[] objFields = getObjFields(obj);		
 		for (int i = 0; i < objFields.length; i++) {
 			objFields[i].setAccessible(true);

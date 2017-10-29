@@ -1,10 +1,12 @@
 package poly.controller;
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import poly.bean.KhachHang;
 import poly.constants.SneakerGlobalConstant;
 import poly.dao.generic.IGenericDAO;
@@ -18,7 +20,6 @@ public class KhachHangController {
 		IGenericDAO<KhachHang> khachhangDAO;
 
 		/**
-		 * Show All Product
 		 * 
 		 * @param model {@link Model}
 		 * @param request {@link HttpServletRequest}
@@ -27,7 +28,7 @@ public class KhachHangController {
 		@RequestMapping(value = "/quanlykhachhang", method = RequestMethod.GET)
 		public String laykhachhang(Model model, HttpServletRequest request) {
 			model.addAttribute("listKH", khachhangDAO.getAll());
-			return "quanlykhachhang";
+			return SneakerGlobalConstant.QUAN_LY_KHACH_HANG;
 		}
 
 		/**
@@ -39,7 +40,7 @@ public class KhachHangController {
 		 */
 		@RequestMapping(value = "/editKH")
 		public String editKH(HttpServletRequest request, Model model) {
-			int ma = Integer.parseInt(request.getParameter("txtMakh"));
+			int ma = Integer.parseInt(request.getParameter(SneakerGlobalConstant.OBJECT_ID));
 			KhachHang kh = khachhangDAO.getObj(ma);
 			request.setAttribute("kh", kh);
 			return "editCustomer";
@@ -79,8 +80,8 @@ public class KhachHangController {
 		}
 
 		@RequestMapping("/searchkh")
-		public String searchKH() {
-			return "quanlykhachhang";
+		public String searchKH(HttpServletRequest request) {			
+			return SneakerGlobalConstant.QUAN_LY_KHACH_HANG;
 		}
 		
 		@RequestMapping(value = "/deleteKH")
@@ -88,7 +89,7 @@ public class KhachHangController {
 				int makh = Integer.parseInt(request.getParameter(SneakerGlobalConstant.OBJECT_ID));
 				KhachHang kh = khachhangDAO.getObj(makh);
 				khachhangDAO.deleteObject(kh);
-			return "quanlykhachhang";
+			return SneakerGlobalConstant.QUAN_LY_KHACH_HANG;
 		}
 	
 	}

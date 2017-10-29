@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import poly.constants.SneakerGlobalConstant;
 import poly.utils.QueryUtils;
 
 @Transactional
@@ -53,7 +54,7 @@ public class GenericDAO<T> implements IGenericDAO<T>{
 
 	@Override
 	public List<T> getAll() {			
-		return getSession().createQuery(QueryUtils.FROM + classType.getSimpleName()).list();
+		return getSession().createQuery(SneakerGlobalConstant.FROM + classType.getSimpleName()).list();
 	}
 
 	public Class<T> getClassType() {
@@ -64,7 +65,8 @@ public class GenericDAO<T> implements IGenericDAO<T>{
 		this.classType = classType;
 	}	
 	
-	public List<T> filterSanPham(String query){
+	@Override
+	public List<T> executeQuery(String query){
 		return getSession().createQuery(query).list();
 	}
 	

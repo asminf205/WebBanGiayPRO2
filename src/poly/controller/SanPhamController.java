@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import poly.bean.SanPham;
+import poly.common.QueryManager;
 import poly.constants.SneakerGlobalConstant;
 import poly.dao.generic.IGenericDAO;
 import poly.utils.CommonUtils;
+import poly.utils.QueryUtils;
 
 @Controller
 public class SanPhamController {
@@ -107,7 +109,8 @@ public class SanPhamController {
 	}
 
 	@RequestMapping("/search")
-	public String search() {
+	public String search(HttpServletRequest request, Model model) {
+		model.addAttribute("list", sanphamDAO.executeQuery(QueryUtils.createQueryWithCrit(new SanPham(),new QueryManager(request.getParameterMap())) ) );
 		return "quanlysanpham";
 	}
 	

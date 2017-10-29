@@ -8,13 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name = "giay")
 public class SanPham {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ma_giay")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int ma;
 
 	@Column(name = "tengiay")
