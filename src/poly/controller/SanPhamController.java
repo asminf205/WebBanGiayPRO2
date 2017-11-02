@@ -45,7 +45,7 @@ public class SanPhamController {
 	@RequestMapping(value = "/quanlysanpham", method = RequestMethod.GET)
 	public String laysanpham(Model model, HttpServletRequest request) {
 		model.addAttribute("list", sanphamDAO.getAll());
-		return "quanlysanpham";
+		return SneakerGlobalConstant.QUAN_LY_SAN_PHAM_PAGE;
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class SanPhamController {
 		int ma = Integer.parseInt(request.getParameter(SneakerGlobalConstant.OBJECT_ID));
 		SanPham sp = sanphamDAO.getObj(ma);
 		request.setAttribute("SP", sp);
-		return "editproduct";
+		return SneakerGlobalConstant.SUA_SAN_PHAM_PAGE;
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class SanPhamController {
 	 */
 	@RequestMapping(value = "/themsanpham")
 	public String themsanpham() {
-		return "themsanpham";
+		return SneakerGlobalConstant.THEM_SAN_PHAM_PAGE;
 	}
 	
 	/**
@@ -108,10 +108,17 @@ public class SanPhamController {
 		return "redirect:/";
 	}
 
+	/**
+	 * Execute Search Action
+	 * @param request {@link HttpServletRequest}
+	 * @param model {@link Model}
+	 * @return {@link String}
+	 */
 	@RequestMapping("/search")
 	public String search(HttpServletRequest request, Model model) {
-		model.addAttribute("list", sanphamDAO.executeQuery(QueryUtils.createQueryWithCrit(new SanPham(),new QueryManager(request.getParameterMap())) ) );
-		return "quanlysanpham";
+		//model.addAttribute("list", sanphamDAO.executeQuery(QueryUtils.createQueryWithCrit(new SanPham(),new QueryManager(request.getParameterMap())) ) );
+		
+		return SneakerGlobalConstant.QUAN_LY_SAN_PHAM_PAGE;
 	}
 	
 	@RequestMapping(value = "/cart")
@@ -129,7 +136,13 @@ public class SanPhamController {
 		return "Cart";
 	}
 	
-	List<SanPham> editSession(SanPham sp,List<SanPham> lstSp){
+	/**
+	 * Execute Add To Cart Action
+	 * @param sp {@link SanPham}
+	 * @param lstSp {@link List<SanPham>}
+	 * @return {@link List<SanPham>}
+	 */
+	private List<SanPham> editSession(SanPham sp,List<SanPham> lstSp){
 		for(int i=0;i<lstSp.size();i++){
 			if(lstSp.get(i).getMa()==sp.getMa()){
 				int dongia = lstSp.get(i).getGia()/lstSp.get(i).getSoluong();

@@ -21,6 +21,12 @@ public class SneakerGlobalConstant {
 	public static final String QUOTE="'";	
 	
 	/* Page Name */
-	public static final String QUAN_LY_KHACH_HANG = "quanlykhachhang";
+	public static final String INDEX_PAGE = "index";
+	public static final String QUAN_LY_KHACH_HANG_PAGE = "quanlykhachhang";
+	public static final String THEM_KHACH_HANG_PAGE = "themkhachhang";
+	public static final String SUA_KHACH_HANG_PAGE = "editCustomer";
 	
+	public static final String QUAN_LY_SAN_PHAM_PAGE = "quanlysanpham";
+	public static final String SUA_SAN_PHAM_PAGE = "editproduct";
+	public static final String THEM_SAN_PHAM_PAGE = "themsanpham";
 }

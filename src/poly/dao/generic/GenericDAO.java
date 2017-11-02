@@ -2,13 +2,14 @@ package poly.dao.generic;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import poly.bean.SanPham;
 import poly.constants.SneakerGlobalConstant;
-import poly.utils.QueryUtils;
 
 @Transactional
 public class GenericDAO<T> implements IGenericDAO<T>{
@@ -67,7 +68,7 @@ public class GenericDAO<T> implements IGenericDAO<T>{
 	
 	@Override
 	public List<T> executeQuery(String query){
-		return getSession().createQuery(query).list();
+		return null;
 	}
 	
 	

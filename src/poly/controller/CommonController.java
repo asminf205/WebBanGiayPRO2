@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import poly.bean.SanPham;
+import poly.constants.SneakerGlobalConstant;
 import poly.dao.generic.IGenericDAO;
 
 @Controller
@@ -18,6 +19,6 @@ public class CommonController {
 	@RequestMapping(value = "/", method=RequestMethod.GET)
 	public String showIndex(Model model){
 		model.addAttribute("list", sanphamDAO.getAll());
-		return "index";
+		return SneakerGlobalConstant.INDEX_PAGE;
 	}
 }
