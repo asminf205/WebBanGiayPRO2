@@ -2,11 +2,15 @@ package poly.dao.generic;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.Root;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import poly.bean.SanPham;
 import poly.utils.QueryUtils;
 
 @Transactional
@@ -16,6 +20,14 @@ public class GenericDAO<T> implements IGenericDAO<T>{
 	SessionFactory sessionFactory;
 	
 	private Class<T> classType;
+	public List<T> filterSanPham(String query){
+		CriteriaBuilder builder = getSession().getCriteriaBuilder();
+		CriteriaQuery<SanPham> criteria = builder.createQuery( SanPham.class );
+		Root<SanPham> personRoot = criteria.from( SanPham.class );
+		criteria.select( personRoot );
+		criteria.where( builder.equal( personRoot.get( personRoot.get("mau") ), "brown" ) );
+		return getSession().createQuery(query).list();
+	}
 	
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
@@ -64,7 +76,5 @@ public class GenericDAO<T> implements IGenericDAO<T>{
 		this.classType = classType;
 	}	
 	
-	public List<T> filterSanPham(String query){
-		return getSession().createQuery(query).list();
-	}
+
 }
