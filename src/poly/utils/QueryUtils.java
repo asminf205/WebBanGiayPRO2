@@ -1,13 +1,15 @@
 package poly.utils;
 
+import poly.common.QueryManager;
+import poly.constants.SneakerGlobalConstant;
+
 public class QueryUtils {
 
-	/* HQL query */
-	
-	public static final String FROM = "from ";
-	
-	public static final String WHERE = "where ";
-	
-	public static final String AND = " and ";	
+	public static String createQueryWithCrit(Object obj,QueryManager queryManager){
+		if(queryManager.generateCriteria().equals("")){
+			return SneakerGlobalConstant.FROM + obj.getClass().getSimpleName();
+		}
+		return SneakerGlobalConstant.FROM + obj.getClass().getSimpleName()+ SneakerGlobalConstant.WHERE + queryManager.generateCriteria();
+	}
 	
 }

@@ -1,14 +1,18 @@
 package poly.controller;
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import poly.bean.KhachHang;
+import poly.common.QueryManager;
 import poly.constants.SneakerGlobalConstant;
 import poly.dao.generic.IGenericDAO;
 import poly.utils.CommonUtils;
+import poly.utils.QueryUtils;
 
 @Controller
 public class KhachHangController {
@@ -18,8 +22,7 @@ public class KhachHangController {
 		IGenericDAO<KhachHang> khachhangDAO;
 
 		/**
-		 * Show All Product
-		 * 
+		 * Show Customer List
 		 * @param model {@link Model}
 		 * @param request {@link HttpServletRequest}
 		 * @return {@link String}
@@ -27,7 +30,7 @@ public class KhachHangController {
 		@RequestMapping(value = "/quanlykhachhang", method = RequestMethod.GET)
 		public String laykhachhang(Model model, HttpServletRequest request) {
 			model.addAttribute("listKH", khachhangDAO.getAll());
-			return "quanlykhachhang";
+			return SneakerGlobalConstant.QUAN_LY_KHACH_HANG_PAGE;
 		}
 
 		/**
@@ -39,31 +42,33 @@ public class KhachHangController {
 		 */
 		@RequestMapping(value = "/editKH")
 		public String editKH(HttpServletRequest request, Model model) {
-			int ma = Integer.parseInt(request.getParameter("txtMakh"));
+			int ma = Integer.parseInt(request.getParameter(SneakerGlobalConstant.OBJECT_ID));
 			KhachHang kh = khachhangDAO.getObj(ma);
 			request.setAttribute("kh", kh);
-			return "editCustomer";
+			return SneakerGlobalConstant.SUA_KHACH_HANG_PAGE;
 		}
 
 		/**
-		 *Execute Add Product Action 
+		 *Execute Add Customer Action 
 		 * 
 		 * @param model {@link Model}
 		 * @param request {@link HttpServletRequest}
 		 * @return {@link String}
 		 */
-		@RequestMapping(value = "/themkhachhang")
+		@RequestMapping(value = "/khachhang/moi")
 		public String themKH(Model model, HttpServletRequest request) {
-			if (request.getParameter("action").equalsIgnoreCase("Add")) {
 				KhachHang kh = (KhachHang) CommonUtils.settingAttributeForObject(new KhachHang(), request);
 				khachhangDAO.saveObject(kh);
-				return "index";
-			}
-			return "themkhachhang";
+				return SneakerGlobalConstant.INDEX_PAGE;
+		}
+		
+		@RequestMapping(value="/themkhachhang")
+		public String hienthitrang(){
+			return SneakerGlobalConstant.THEM_KHACH_HANG_PAGE;
 		}
 		
 		/**
-		 * Execute Edit Product Action
+		 * Execute Edit Customer Action
 		 * 
 		 * @param model {@link Model}
 		 * @param request {@link HttpServletRequest}
@@ -78,17 +83,30 @@ public class KhachHangController {
 			return "redirect:/";
 		}
 
+		/**
+		 * Search Customer Action
+		 * @param request {@link HttpServletRequest}
+		 * @param model {@link Model}
+		 * @return {@link String}
+		 */
 		@RequestMapping("/searchkh")
-		public String searchKH() {
-			return "quanlykhachhang";
+		public String searchKH(HttpServletRequest request,Model model) {
+			model.addAttribute("list", khachhangDAO.executeQuery(QueryUtils.createQueryWithCrit(new KhachHang(),new QueryManager(request.getParameterMap())) ) );
+			return SneakerGlobalConstant.QUAN_LY_KHACH_HANG_PAGE;
 		}
 		
+		/**
+		 * Execute Delete Action
+		 * @param model {@link Model}
+		 * @param request {@link HttpServletRequest}
+		 * @return {@link String}
+		 */
 		@RequestMapping(value = "/deleteKH")
 		public String xoakhachhang(Model model, HttpServletRequest request) {
 				int makh = Integer.parseInt(request.getParameter(SneakerGlobalConstant.OBJECT_ID));
 				KhachHang kh = khachhangDAO.getObj(makh);
 				khachhangDAO.deleteObject(kh);
-			return "quanlykhachhang";
+			return SneakerGlobalConstant.QUAN_LY_KHACH_HANG_PAGE;
 		}
 	
 	}

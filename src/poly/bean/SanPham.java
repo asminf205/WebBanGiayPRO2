@@ -13,8 +13,7 @@ import javax.persistence.Transient;
 public class SanPham {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ma_giay")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int ma;
 
 	@Column(name = "tengiay")
@@ -124,7 +123,6 @@ public class SanPham {
 		this.hangsx = hangsx;
 	}
 
-
 	public SanPham(String ten, int gia, String hinh, int soluong, String mau, int size, String hangsx) {
 		this.ten = ten;
 		this.gia = gia;
@@ -134,5 +132,4 @@ public class SanPham {
 		this.size = size;
 		this.hangsx = hangsx;
 	}
-	
 }
