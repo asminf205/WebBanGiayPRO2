@@ -56,8 +56,7 @@ public class KhachHangController {
 		 * @return {@link String}
 		 */
 		@RequestMapping(value = "/khachhang/moi", method=RequestMethod.POST)
-		public String themKH(Model model, HttpServletRequest request) {
-				KhachHang kh = (KhachHang) CommonUtils.settingAttributeForObject(new KhachHang(), request);
+		public String themKH(Model model, HttpServletRequest request, KhachHang kh) {
 				khachhangDAO.saveObject(kh);
 				return "redirect:/";
 		}
