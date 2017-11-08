@@ -14,6 +14,7 @@ public class SanPham {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "ma_giay")
 	int ma;
 
 	@Column(name = "tengiay")

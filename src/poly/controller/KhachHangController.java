@@ -55,11 +55,11 @@ public class KhachHangController {
 		 * @param request {@link HttpServletRequest}
 		 * @return {@link String}
 		 */
-		@RequestMapping(value = "/khachhang/moi")
+		@RequestMapping(value = "/khachhang/moi", method=RequestMethod.POST)
 		public String themKH(Model model, HttpServletRequest request) {
 				KhachHang kh = (KhachHang) CommonUtils.settingAttributeForObject(new KhachHang(), request);
 				khachhangDAO.saveObject(kh);
-				return SneakerGlobalConstant.INDEX_PAGE;
+				return "redirect:/";
 		}
 		
 		@RequestMapping(value="/themkhachhang")

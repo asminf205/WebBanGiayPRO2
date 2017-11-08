@@ -6,6 +6,7 @@
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<c:set var="s" value="0"></c:set>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -38,36 +39,92 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="themes/images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="themes/images/ico/apple-touch-icon-57-precomposed.png">
 	<style type="text/css" id="enject"></style>
+	<link href="themes/css/style.css" rel="stylesheet" type="text/css"/>
+<!-- Custom Theme files -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta name="keywords" content="Flat Cart Widget Responsive, Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<!--google fonts-->
+<link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="themes/js/jquery-1.11.0.min.js">
+	</script>
+
+<script>
+function deleteRow(r) {
+    var i = r.parentNode.parentNode.rowIndex;
+    document.getElementById("myTable").deleteRow(i);
+}
+</script>
   </head>
 <body>
   <jsp:include page="menu.jsp"></jsp:include>
-  <table border="1">
-		<tr>
-			<td>HinhAnh</td>
-			<td>TenSP</td>
-			<td>Mau</td>
-			<td>Size</td>
-			<td>Hang SX</td>
-			<td>Số lượng</td>
-			<td>Gia</td>
-			<td>Xóa</td>
-		</tr>
-		<c:forEach var="rows" items="${listCart}">		
-				<tr>
-				<td><img src="${pageContext.request.contextPath}/themes/images/products/${rows.hinh}" width="100%" height="100%"/>
-					<td>${rows.ten}</td>
-					<td>${rows.mau}</td>
-					<td>${rows.size}</td>
-					<td>${rows.hangsx}</td>
-					<td><input type="button" value="-">${rows.soluong}<input type="button" value="+"></td>
-					<td>${rows.gia}</td>					
-					<td><input type="hidden" name="txtMa" value="${rows.ma}"/>
-					<input type="submit" name="action" value="Delete" /></td>
-				</tr>		
-		</c:forEach>
-	</table>
-	<br />
-	
+
+<div class="cart">
+   <div class="cart-top">
+   	  <div class="cart-experience">
+   	  	 <h4>Shopping Cart Experience</h4>
+   	  </div> 	 
+   	  	 <div class="clear"> </div>
+   	  </div>
+   	 <div class="clear"> </div>
+   </div>
+   <div class="cart-bottom">
+   	 <div class="table">
+   	 	<table id="myTable">
+   	 		<tbody>
+   	 	      <tr  class="main-heading">	  	      	
+		 			<th>Images</th>
+		 			<th class="long-txt">Product Description</th>
+		 			<th>Quantity</th>
+		 			<th>Price</th>
+		 			<th>Remove</th>
+   	 	     </tr>
+   	 	     
+   	 	     <c:set var="a" value="0"></c:set>
+   	 	     <c:forEach var="rows" items="${listCart}">		
+				<c:set var="s" value="${s + rows.gia}"></c:set>
+   	 	     <tr class="cake-top">
+   	 	     	<td class="cakes">	 	     	  
+   	 	     		<div class="product-img">
+   	 	     			<img src="${pageContext.request.contextPath}/themes/images/products/${rows.hinh}" width="50%" height="50%"/>
+   	 	     		</div>
+   	 	        </td>
+   	 	        <td class="cake-text">
+   	 	     		<div class="product-text">
+   	 	     			<h3>${rows.ten}</h3>
+   	 	     			<p>Màu : ${rows.mau}</p>
+   	 	     			<p>Size giày: ${rows.size}</p>
+   	 	     			<p>Hãng giày: ${rows.hangsx}</p>
+   	 	     		</div>
+ 	     	    </td>
+ 	     	    <td class="quantity"> 	 	     	 
+   	 	     	  <div class="product-right">
+   	 	     	  	<input min="1" type="number" id="quantity" name="quantity" value="${rows.soluong}" >		  
+   	 	     	  </div>
+   	 	     	</td>
+   	 	     	<td class="price">
+   	 	     		<h4>$${rows.gia}</h4>	
+   	 	     	</td>
+   	 	     	<td class="top-remove">
+				<input type="button" value="Remove" onclick="deleteRow(this)">				
+   	 	     	</td>
+   	 	     	
+   	 	     	</c:forEach>  	 	     	  	 	     	  	 	     
+   	 	   </tbody>  	 	   
+   	 	</table>
+   	 </div>
+   	 
+   	 	<div class="dis-total">
+   	 		<h1>Total ${s}</h1>
+   	 		<div class="tot-btn">
+   	 			<a class="shop" href="${pageContext.request.contextPath}/">Back to Shop</a>
+   	 			<a class="check" href="#">Continue to Checkout</a>
+   	 		</div>
+   	 	</div>
+   	   <div class="clear"> </div>
+   	 </div>
+
   <jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

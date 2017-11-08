@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import poly.bean.KhachHang;
 import poly.bean.SanPham;
 import poly.constants.SneakerGlobalConstant;
 
@@ -70,6 +71,15 @@ public class GenericDAO<T> implements IGenericDAO<T>{
 	public List<T> executeQuery(String query){
 		return null;
 	}
-	
-	
+	@Override	
+	public boolean checkLogin(String username, String password) {
+		KhachHang kh= new KhachHang();
+		List<KhachHang> user =  (List<KhachHang>) getSession().createQuery("from KhachHang").list();
+		if((username==kh.getUsername()) &&(password==kh.getPassword())){
+			return true;
+	}
+	else{
+		return false;
+	}
+	}
 }

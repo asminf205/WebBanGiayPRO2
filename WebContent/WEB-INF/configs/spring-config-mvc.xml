@@ -79,6 +79,6 @@
        	p:sessionFactory-ref="sessionFactory" />
     <tx:annotation-driven transaction-manager="transactionManager" />
     <mvc:resources location="themes/**" mapping="themes/**"></mvc:resources>
-    
+    <mvc:annotation-driven />
 </beans>
 

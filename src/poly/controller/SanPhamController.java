@@ -35,6 +35,7 @@ public class SanPhamController {
 	@Autowired
 	ServletContext context;
 
+	int sum=0;
 	/**
 	 * Show All Product
 	 * 
@@ -129,8 +130,10 @@ public class SanPhamController {
 		SanPham sp = sanphamDAO.getObj(ma);
 		if(Objects.isNull(session.getAttribute("listCart"))){
 			list=editSession(sp,new ArrayList<>());
+			
 		}else{
 			list=editSession(sp, (List<SanPham>)session.getAttribute("listCart"));
+			
 		}
 		session.setAttribute("listCart", list);
 		return "Cart";
@@ -155,4 +158,5 @@ public class SanPhamController {
 		lstSp.add(sp);
 		return lstSp;
 	}
+	
 }

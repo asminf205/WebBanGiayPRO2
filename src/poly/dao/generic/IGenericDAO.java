@@ -5,6 +5,8 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import poly.bean.KhachHang;
+
 public interface IGenericDAO<T> {
 
 	 SessionFactory getSessionFactory();
@@ -23,4 +25,5 @@ public interface IGenericDAO<T> {
 		 
 	List<T> executeQuery(String query);
 	
+	boolean checkLogin(String username, String password);
 }
