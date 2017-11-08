@@ -1,10 +1,14 @@
 package poly.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -37,6 +41,9 @@ public class SanPham {
 
 	@Column(name = "hang")
 	String hangsx;
+	
+	@OneToMany(mappedBy="sp")
+	List<ChiTietHoaDon> listOrder = new ArrayList<ChiTietHoaDon>();
 
 	public SanPham() {
 	}
@@ -103,6 +110,14 @@ public class SanPham {
 
 	public void setHangsx(String hangsx) {
 		this.hangsx = hangsx;
+	}
+
+	public List<ChiTietHoaDon> getListOrder() {
+		return listOrder;
+	}
+
+	public void setListOrder(List<ChiTietHoaDon> listOrder) {
+		this.listOrder = listOrder;
 	}
 
 	public SanPham(String ten, int gia, String hinh, String mau, int size, String hangsx) {
