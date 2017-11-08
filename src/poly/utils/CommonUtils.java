@@ -34,7 +34,12 @@ public class CommonUtils {
 				if(Objects.isNull(requestParams.get(objFields[i].getName()))){
 					continue;
 				}
-				objFields[i].set(obj, getFieldValueByType(requestParams.get(objFields[i].getName())));
+				if(objFields[i].getType().getName().equals("int")){
+					objFields[i].set(obj, getFieldValueByType(requestParams.get(objFields[i].getName())));
+				}else{
+					objFields[i].set(obj, requestParams.get(objFields[i].getName())[0]);
+				}
+				
 			} catch (IllegalArgumentException | IllegalAccessException e) {
 				logger.info(e.getMessage());
 			}

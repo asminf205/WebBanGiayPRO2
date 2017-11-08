@@ -24,7 +24,7 @@
             Số điện thoại: <input type="text" name="sdt" /> <br/>
             Địa chỉ: <input type="text" name="diachi" /> <br/>
             Email: <input type="text" name="email" /> <br/>                        
-            <input type="submit" name="action" value="Insert"/>
+            <input type="submit" value="Insert"/>
         </form>
       
   <jsp:include page="footer.jsp"></jsp:include>
