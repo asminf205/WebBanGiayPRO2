@@ -74,10 +74,9 @@ public class KhachHangController {
 		 * @return {@link String}
 		 */
 		@RequestMapping(value = "/suakhachhang", method = RequestMethod.GET)
-		public String suaKH(Model model, HttpServletRequest request) {		
+		public String suaKH(Model model, HttpServletRequest request, KhachHang kh) {		
 			int ma = Integer.parseInt(request.getParameter(SneakerGlobalConstant.OBJECT_ID));
-			KhachHang kh = khachhangDAO.getObj(ma);
-			kh = (KhachHang) CommonUtils.settingAttributeForObject(kh, request);
+			kh.setMa(ma);
 			khachhangDAO.updateObject(kh);
 			return "redirect:/";
 		}

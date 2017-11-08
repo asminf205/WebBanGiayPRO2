@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import poly.bean.KhachHang;
 import poly.bean.SanPham;
 import poly.common.QueryManager;
 import poly.constants.SneakerGlobalConstant;
@@ -82,14 +83,14 @@ public class SanPhamController {
 	 * @return {@link String}
 	 */
 	@RequestMapping(value = "/sanpham/moi", method=RequestMethod.POST)
-	public String addProduct(HttpServletRequest request,@RequestParam MultipartFile image, Model model){
+	public String addProduct(HttpServletRequest request,@RequestParam MultipartFile image, Model model, SanPham sp){
 		String imgName = request.getParameter(SneakerGlobalConstant.OBJECT_NAME)+".jpg";
 		try {
 			image.transferTo(new File(context.getRealPath("/themes/images/products/")+imgName));
 		} catch (IllegalStateException | IOException e) {
 			Logger.getLogger(this.getClass()).info(e.getMessage());
 		}
-			SanPham sp = (SanPham) CommonUtils.settingAttributeForObject(new SanPham(), request);			
+		sp.setHinh(imgName);
 			sanphamDAO.saveObject(sp);
 			return "redirect:/";
 	}
@@ -101,10 +102,9 @@ public class SanPhamController {
 	 * @return {@link String}
 	 */
 	@RequestMapping(value = "/suasanpham", method = RequestMethod.GET)
-	public String suasanpham(Model model, HttpServletRequest request) {		
+	public String suasanpham(Model model, HttpServletRequest request, SanPham sp) {		
 		int ma = Integer.parseInt(request.getParameter(SneakerGlobalConstant.OBJECT_ID));
-		SanPham sp = sanphamDAO.getObj(ma);
-		sp = (SanPham) CommonUtils.settingAttributeForObject(sp, request);
+		sp.setMa(ma);
 		sanphamDAO.updateObject(sp);
 		return "redirect:/";
 	}
@@ -117,8 +117,7 @@ public class SanPhamController {
 	 */
 	@RequestMapping("/search")
 	public String search(HttpServletRequest request, Model model) {
-		//model.addAttribute("list", sanphamDAO.executeQuery(QueryUtils.createQueryWithCrit(new SanPham(),new QueryManager(request.getParameterMap())) ) );
-		
+		model.addAttribute("list", sanphamDAO.executeQuery(QueryUtils.createQueryWithCrit(new SanPham(),new QueryManager(request.getParameterMap())) ) );
 		return SneakerGlobalConstant.QUAN_LY_SAN_PHAM_PAGE;
 	}
 	

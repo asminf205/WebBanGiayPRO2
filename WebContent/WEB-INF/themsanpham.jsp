@@ -18,7 +18,7 @@
        
             <h1>New Product!</h1>
             <form action="${pageContext.request.contextPath}/sanpham/moi" method="post" enctype="multipart/form-data" onsubmit="editImageName()">       
-            Tên sản phẩm: <input type="text" name="ten" onkeydown="passValue(this)"/> <br/>
+            Tên sản phẩm: <input type="text" name="ten"/> <br/>
             Gía: <input type="text" name="gia" /> <br/>                      
             Hinh:<input type="button" value="upload" id="btnUpload" onclick="activateUpload()"><br>
     			<input type="file" style="display:none" id="upload" name="image" onchange="readURL(this)"/>
