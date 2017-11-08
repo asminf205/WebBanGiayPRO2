@@ -34,7 +34,7 @@
 					<td>${rows.ma}</td>
 					<td>${rows.ten}</td>
 					<td>${rows.gia}</td>
-					<td><img src="${pageContext.request.contextPath}/themes/images/products/${rows.hinh}" width="20%" height="20%"/>
+					<td><img src="${pageContext.request.contextPath}/themes/images/products/${rows.hinh}" width="100%" height="100%"/>
 					<td>${rows.mau}</td>
 					<td>${rows.size}</td>
 					<td>${rows.hangsx}</td>

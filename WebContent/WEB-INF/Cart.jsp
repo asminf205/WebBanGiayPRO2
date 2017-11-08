@@ -54,15 +54,15 @@
 		</tr>
 		<c:forEach var="rows" items="${listCart}">		
 				<tr>
-					<td><img src="${pageContext.request.contextPath}/themes/images/products/${rows.hinh}" width="20%" height="20%"/>
+				<td><img src="${pageContext.request.contextPath}/themes/images/products/${rows.hinh}" width="100%" height="100%"/>
 					<td>${rows.ten}</td>
 					<td>${rows.mau}</td>
 					<td>${rows.size}</td>
 					<td>${rows.hangsx}</td>
-					<td>${rows.soluong}</td>
+					<td><input type="button" value="-">${rows.soluong}<input type="button" value="+"></td>
 					<td>${rows.gia}</td>					
-					<td><input type="hidden" name="txtMa" value="${rows.ma}" />
-						<input type="submit" name="action" value="Delete" /></td>
+					<td><input type="hidden" name="txtMa" value="${rows.ma}"/>
+					<input type="submit" name="action" value="Delete" /></td>
 				</tr>		
 		</c:forEach>
 	</table>
