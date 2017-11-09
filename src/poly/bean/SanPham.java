@@ -42,7 +42,7 @@ public class SanPham {
 	@Column(name = "hang")
 	String hangsx;
 	
-	@OneToMany(mappedBy="sp")
+	@OneToMany(mappedBy="identity.sp")
 	List<ChiTietHoaDon> listOrder = new ArrayList<ChiTietHoaDon>();
 
 	public SanPham() {

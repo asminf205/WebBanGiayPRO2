@@ -51,6 +51,6 @@ public class CommonController {
 			 hoadonDAO.saveObject(hd);
 		}
 			
-		return "";
+		return "redirect:/";
 	}
 }
