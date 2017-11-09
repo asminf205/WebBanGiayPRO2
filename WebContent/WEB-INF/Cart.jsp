@@ -119,7 +119,9 @@ function deleteRow(r) {
    	 		<h1>Total ${s}</h1>
    	 		<div class="tot-btn">
    	 			<a class="shop" href="${pageContext.request.contextPath}/">Back to Shop</a>
-   	 			<a class="check" href="#">Continue to Checkout</a>
+   	 			<form action="${pageContext.request.contextPath}/hoadon/moi" method="post">
+   	 			<input type="submit" value="Continue to Checkout">
+   	 		</form>
    	 		</div>
    	 	</div>
    	   <div class="clear"> </div>

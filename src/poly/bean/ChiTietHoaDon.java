@@ -9,8 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 @AssociationOverrides({
-	@AssociationOverride(joinColumns = @JoinColumn(name="mahoadon"),name="identity.hoadon"),
-	@AssociationOverride(joinColumns = @JoinColumn(name="ma"),name="identity.sp"),
+	@AssociationOverride(joinColumns = @JoinColumn(name="ma_hoadon"),name="identity.hoadon"),
+	@AssociationOverride(joinColumns = @JoinColumn(name="ma_giay"),name="identity.sp"),
 })
 @Entity
 @Table(name="chitiethoadon")
