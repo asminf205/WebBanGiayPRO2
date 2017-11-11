@@ -7,6 +7,9 @@ import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
+
 import poly.constants.SneakerGlobalConstant;
 
 public class CommonUtils {
@@ -92,5 +95,18 @@ public class CommonUtils {
 			return builder.toString();
 		}
 		return "";
+	}
+	
+	/**
+	 * Send Mail
+	 * @param mailSender
+	 */
+	public static void sendMail(MailSender mailSender) {
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setFrom("testmail2250@gmail.com");
+		message.setTo("");
+		message.setSubject("test");
+		message.setText("message");
+		mailSender.send(message);
 	}
 }
