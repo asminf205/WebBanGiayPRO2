@@ -14,6 +14,7 @@ import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -85,8 +86,12 @@ public class SanPhamController {
 	@RequestMapping(value = "/sanpham/moi", method=RequestMethod.POST)
 	public String addProduct(HttpServletRequest request,@RequestParam MultipartFile image, Model model, SanPham sp){
 		String imgName = request.getParameter(SneakerGlobalConstant.OBJECT_NAME)+".jpg";
+		imgName=CommonUtils.formatString(imgName.split(SneakerGlobalConstant.SPACE));
+		if(StringUtils.isEmpty(imgName)){
+			return "redirect:/"+SneakerGlobalConstant.THEM_SAN_PHAM_PAGE;
+		}
 		try {
-			image.transferTo(new File(context.getRealPath("/themes/images/products/")+imgName));
+			image.transferTo(new File(context.getRealPath("/resources/theme/images/")+imgName));
 		} catch (IllegalStateException | IOException e) {
 			Logger.getLogger(this.getClass()).info(e.getMessage());
 		}
@@ -158,4 +163,11 @@ public class SanPhamController {
 		return lstSp;
 	}
 	
+	@RequestMapping(value = "/deleteSP")
+	public String xoasanpham(Model model, HttpServletRequest request) {
+			int masp = Integer.parseInt(request.getParameter(SneakerGlobalConstant.OBJECT_ID));
+			SanPham sp = sanphamDAO.getObj(masp);
+			sanphamDAO.deleteObject(sp);
+		return SneakerGlobalConstant.QUAN_LY_SAN_PHAM_PAGE;
+	}
 }

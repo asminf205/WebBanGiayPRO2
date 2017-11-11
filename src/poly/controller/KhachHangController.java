@@ -106,6 +106,16 @@ public class KhachHangController {
 				khachhangDAO.deleteObject(kh);
 			return SneakerGlobalConstant.QUAN_LY_KHACH_HANG_PAGE;
 		}
-	
-	}
+
+		@RequestMapping(value="/addUser")
+		public String hienthitrangAddUser(){
+			return SneakerGlobalConstant.REGISTER;
+		}
+		
+		@RequestMapping(value="/signup")
+		public String hienthitrangSignup(){
+			return SneakerGlobalConstant.SIGNUP;
+		}
+		
+}
 

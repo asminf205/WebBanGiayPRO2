@@ -78,7 +78,7 @@
     	class="org.springframework.orm.hibernate4.HibernateTransactionManager" 
        	p:sessionFactory-ref="sessionFactory" />
     <tx:annotation-driven transaction-manager="transactionManager" />
-    <mvc:resources location="themes/**" mapping="themes/**"></mvc:resources>
+    <mvc:resources mapping="/resources/**" location="/resources/theme/"></mvc:resources>
     <mvc:annotation-driven />
 </beans>
 

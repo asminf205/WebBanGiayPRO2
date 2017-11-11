@@ -1,17 +1,15 @@
-
-<%-- 
-    Document   : index
-    Created on : Oct 15, 2016, 1:11:49 PM
-    Author     : HP
---%>
-
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-
 <html lang="en">
     <head>
-    <title>N-Air a E-commerce category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+    <title>N-Air a E-commerce category Flat Bootstrap Responsive Website Template | Checkout :: w3layouts</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="keywords" content="N-Air Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
@@ -32,6 +30,21 @@
 		<!--bootstrap-js-->
 			<script src="resources/js/bootstrap.min.js"></script>
 		<!--script-->
+         <!-- FlexSlider -->
+            <script src="resources/js/imagezoom.js"></script>
+              <script defer src="resources/js/jquery.flexslider.js"></script>
+            <link rel="stylesheet" href="resources/css/flexslider.css" type="text/css" media="screen" />
+
+            <script>
+            // Can also be used with $(document).ready()
+            $(window).load(function() {
+              $('.flexslider').flexslider({
+                animation: "slide",
+                controlNav: "thumbnails"
+              });
+            });
+            </script>
+        <!-- //FlexSlider-->
     </head>
     <body>
         <div class="header">
@@ -43,6 +56,15 @@
                     <div class="login-bars">
                         <a class="btn btn-default log-bar" href="${pageContext.request.contextPath}/addUser" >Sign up</a>
                         <a class="btn btn-default log-bar" href="${pageContext.request.contextPath}/signup" >Login</a>
+                        <div class="cart box_1">
+                            <a href="checkout.html">
+                            <h3>
+                                <div class="total">
+<span class="simpleCart_total"></span>(<span id="simpleCart_quantity" class="simpleCart_quantity"></span>)</div></h3>
+                            </a>
+                            <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
+                            <div class="clearfix"> </div>
+                        </div>	
                     </div>
         <div class="clearfix"></div>
                 </div>
@@ -58,7 +80,6 @@
                                 <span class="icon-bar"></span>
                             </button>
                         </div>
-                        <div class="clearfix"></div>
                         <!--/.navbar-header-->
 
                         <div class="collapse navbar-collapse collapse-pdng" id="bs-example-navbar-collapse-1">
@@ -148,229 +169,46 @@
                     <!--header-bottom-->
             </div>
         </div>
-               <div class="head-bread">
+        <div class="head-bread">
             <div class="container">
                 <ol class="breadcrumb">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="products.hml">Products</a></li>
-                    <li class="active">CART</li>
+                    <li><a href="index.html">HOME</a></li>
+                    <li class="active">LOGIN</li>
                 </ol>
             </div>
         </div>
-        <!-- check-out -->
-        <style type="text/css">
-        /* = body
-------------------------*/
-.description{
-  font-family: 'Vollkorn', serif;
-  text-align:center;
-  color:#ecf0f1;
-  text-shadow:0 0.1em 0.2em #008c8d;
-}
-/* = Scroll body
-------------------------*/
-::-webkit-scrollbar{
-  width:0.2em;
-}
-::-webkit-scrollbar-track{
-  background-color:#bdc3c7;
-}
-::-webkit-scrollbar-thumb{
-  background-color:#7f8c8d;
-}
-/* = table
-------------------------*/
-.box-table table{
-  border-collapse:collapse;
-  text-align:left;
-  width:100%;
-  margin:0;
-  padding:0;
-  background:#7f8c8d;
-  animation: responsive 5s infinite ease-in-out;
-}
-.box-table{
-  font:normal 12px/150% Arial, Helvetica, sans-serif;
-  overflow:hidden;
-  margin:0 auto;
-  display:block;
-  width:95%;
-  padding:2.5%;
-}
-.box-table table thead th{
-  background-color:#7f8c8d;
-  color:#bdc3c7;
-  text-align:center;
-  padding: 0.75em;
-  font-family: 'Vollkorn', serif;
-  font-weight: bold;
-  font-size: 1.5em;
-  height: 1.5em;
-  vertical-align: top;
-  border-left:0.25em double #95a5a6;
+        <!--signup-->
+        <!-- login-page -->
+        <div class="login">
+            <div class="container">
+                <div class="login-grids">
+                    <div class="col-md-6 log">
+                             <h3>Login</h3>
+                             <div class="strip"></div>
+                             <p>Welcome, please enter the following to continue.</p>
+                             <p>If you have previously Login with us, <a href="#">Click Here</a></p>
+                             <form>
+                                 <h5>User Name:</h5>	
+                                 <input type="text" value="">
+                                 <h5>Password:</h5>
+                                 <input type="password" value=""><br>					
+                                 <input type="submit" value="Login">
 
-}
-.box-table table tbody td,
-.box-table table tbody tr{
-  font-family: 'Vollkorn', serif;
-  font-size:1em;
-  border:none;
-  padding:1em;
-}
-.box-table table tbody tr:nth-child(odd){
-  background:#ecf0f1;
-  color:#95a5a6;
-}
-.box-table table tbody tr:nth-child(even){
-  background:#bdc3c7;
-  color:#7f8c8d;
-}
-.box-table table tbody tr a{
-  text-decoration:none;
-  color:#e67e22;
-}
-.box-table table tbody tr a:hover{
-  color:#d35400;
-}
-.box-table .user-photo{
-  background:#bdc3c7;
-}
-.box-table .user-tumb{
-  width:6em;
-  height:6em;
-  padding:0;
-  display:table-cell;
-  text-align:center;
-  margin:0 auto;
-  -webkit-border-radius:100%;
-  -moz-border-radius:100%;
-  border-radius:100%;
-}
-
-
-/* = Responsive table
-------------------------*/
-
-/* http://elvery.net/demo/responsive-tables/  */
-@media only screen and (max-width: 800px){
-  .box-table table{
-    width:100%;
-    border-collapse:collapse;
-    border-spacing:0;
-  }
-  .box-table th,
-  .box-table td{
-    margin:0;
-    vertical-align:top;
-  }
-  .box-table th{
-    text-align:left;
-  }
-  .box-table table{
-    display:block;
-    position:relative;
-    width:100%;
-  }
-  .box-table thead{
-    display:block;
-    float:left;
-  }
-  .box-table tbody{
-    display:block;
-    width:auto;
-    position:relative;
-    overflow-x:auto;
-    white-space:nowrap;
-  }
-  .box-table thead tr{
-    display:block;
-  }
-  .box-table th{
-    display:block;
-    text-align:right;
-  }
-  .box-table tbody tr{
-    display:inline-block;
-    vertical-align:top;
-  }
-  .box-table td{
-    display:block;
-    min-height:1.25em;
-    text-align:left;
-  }
-  .box-table th{
-    border-bottom:0;
-    border-left:0;
-  }
-  .box-table td{
-    border-left:0;
-    border-right:0;
-    border-bottom:0;
-  }
-}
-/* = Error
-------------------------*/
-.error_table {
-  display: block;
-  background: #E05E5E;
-  color: #D1D1D1;
-  font-family: 'Vollkorn', serif;
-  text-align: center;
-  font-size: 3em;
-  width: 90%;
-  padding: 5%;
-}
-/* = Loader
-------------------------*/
-.loading_table{
-  background:#d35400;
-  color:#ecf0f1;
-  font-family: 'Vollkorn', serif;
-  text-align: center;
-  font-size: 1em;
-  width: 0;
-  display: block;
-  overflow: hidden;
-  height: 1em;
-  padding:0.5em;
-  animation: table_loader 10s infinite ease;
-}
-@keyframes table_loader{50%{width:100%}}
-@-webkit-keyframes table_loader{50%{width:100%}}
-@-moz-keyframes table_loader{50%{width:100%}}
-@-ms-keyframes table_loader{50%{width:100%}}
-@-o-keyframes table_loader{ 50%{width:100%}}
-</style>
-            <div class="box-table">
-			<table>
-			<tr>
-			<td>HinhAnh</td>
-			<td>MaSP</td>
-			<td>TenSP</td>
-			<td>Gia</td>
-			<td>Mau</td>
-			<td>Size</td>
-			<td>Hang SX</td>
-			<td>Edit</td>
-			<td>Delete</td>
-		</tr>
-		<c:forEach var="rows" items="${list}">		
-				<tr>
-				<td><img src="${pageContext.request.contextPath}/resources/images/${rows.hinh}" width="150px" height="100px"/>
-					<td>${rows.ma}</td>
-					<td>${rows.ten}</td>
-					<td>${rows.gia}</td>
-					<td>${rows.mau}</td>
-					<td>${rows.size}</td>
-					<td>${rows.hangsx}</td>
-					
-					<td><a href="edit?ma=${rows.ma}">Edit</td>
-					<td><input type="hidden" name="txtMa" value="${rows.ma}" />
-						<input type="submit" name="action" value="Delete" /></td>
-				</tr>		
-		</c:forEach></table>    
-			</div>
-			
+                             </form>
+                            <a href="#">Forgot Password ?</a>
+                    </div>
+                    <div class="col-md-6 login-right">
+                            <h3>New Registration</h3>
+                            <div class="strip"></div>
+                            <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
+                            <a href="register.html" class="button">Create An Account</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+<!-- //login-page -->
+        <!--signup-->
         <div class="footer-grid">
             <div class="container">
                 <div class="col-md-2 re-ft-grd">
@@ -421,62 +259,3 @@
         </div>
     </body>
 </html>
-
-
-
-
-
-
-<%-- 
-    Document   : products
-    Created on : Oct 15, 2016, 1:38:45 PM
-    Author     : HP
-
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-
-<body>
-	<jsp:include page="menu.jsp"></jsp:include>
-
-	<h1>Products</h1>
-	<form action="search">
-		nhap ten sp:<input type="text" name="txtTenSP" value="" /> <input
-			type="submit" name="action" value="Search" />
-	</form>
-	<br />
-	<table border="1">
-		<tr>
-			<td>MaSP</td>
-			<td>TenSP</td>
-			<td>Gia</td>
-			<td>HinhAnh</td>
-			<td>Mau</td>
-			<td>Size</td>
-			<td>Hang SX</td>
-			<td>Edit</td>
-			<td>Delete</td>
-		</tr>
-		<c:forEach var="rows" items="${list}">		
-				<tr>
-					<td>${rows.ma}</td>
-					<td>${rows.ten}</td>
-					<td>${rows.gia}</td>
-					<td><img src="${pageContext.request.contextPath}/themes/images/products/${rows.hinh}" width="100%" height="100%"/>
-					<td>${rows.mau}</td>
-					<td>${rows.size}</td>
-					<td>${rows.hangsx}</td>
-					
-					<td><a href="edit?ma=${rows.ma}">Edit</td>
-					<td><input type="hidden" name="txtMa" value="${rows.ma}" />
-						<input type="submit" name="action" value="Delete" /></td>
-				</tr>		
-		</c:forEach>
-	</table>
-	<br />
-
-	<jsp:include page="footer.jsp"></jsp:include>
-</body>
-</html>
---%>
