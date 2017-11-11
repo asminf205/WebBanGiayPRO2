@@ -7,6 +7,8 @@ import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
+import poly.constants.SneakerGlobalConstant;
+
 public class CommonUtils {
 
 	static Logger logger = Logger.getLogger("commonUtils");
@@ -78,5 +80,17 @@ public class CommonUtils {
 
 	public static Field[] getObjFields(Object obj) {
 		return obj.getClass().getDeclaredFields();
+	}
+	
+	public static String formatString(String[] array){
+		if(array.length != 0){
+			StringBuilder builder = new StringBuilder();
+			for(int i = 0 ; i < array.length ; i++){
+				builder.append(array[i]);
+				builder.append(SneakerGlobalConstant.UNDERSCORE);
+			}
+			return builder.toString();
+		}
+		return "";
 	}
 }

@@ -6,7 +6,8 @@ public class SneakerGlobalConstant {
 		throw new IllegalStateException("Constant Class");
 	}
 	/* Common Constant */
-	public static final String SPACE = " " ;	
+	public static final String SPACE = " " ;
+	public static final String UNDERSCORE = "_" ;
 	
 	/* Common Object Constants */
 	public static final String OBJECT_ID = "ma";
@@ -29,4 +30,8 @@ public class SneakerGlobalConstant {
 	public static final String QUAN_LY_SAN_PHAM_PAGE = "quanlysanpham";
 	public static final String SUA_SAN_PHAM_PAGE = "editproduct";
 	public static final String THEM_SAN_PHAM_PAGE = "themsanpham";
+	
+	public static final String REGISTER = "AddUser";
+	public static final String SIGNUP = "signup";
+	
 }
