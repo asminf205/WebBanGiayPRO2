@@ -24,18 +24,12 @@
     for the index controller we are using ParameterizableViewController, so we must
     define an explicit mapping for it.
     -->
-    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-        <property name="mappings">
-            <props>
-                <prop key="index.htm">indexController</prop>
-            </props>
-        </property>
-    </bean>
+    
     <!-- Spring MVC Annotation -->
     <context:annotation-config />
     		
     <!-- Cấu hình package chứa các controller -->
-    <context:component-scan base-package="poly.controller"/>
+    <context:component-scan base-package="poly.**"/>
     <!-- Cấu hình view -->   
    <bean id="viewResolver" 
 		p:prefix="/WEB-INF/" p:suffix=".jsp"
@@ -44,9 +38,6 @@
     <!--
     The index controller.
     -->
-    <bean name="indexController"
-          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
-          p:viewName="index" />
     <bean id="multipartResolver" 
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	 	<!-- maxUploadSize=20MB -->
@@ -69,7 +60,7 @@
 	    <property name="hibernateProperties">
 	      <props>        
 	            <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>          
-	            <prop key="hibernate.show_sql">false</prop>
+	            <prop key="hibernate.show_sql">true</prop>
 	            
 	       </props>
 	       
@@ -87,7 +78,23 @@
     	class="org.springframework.orm.hibernate4.HibernateTransactionManager" 
        	p:sessionFactory-ref="sessionFactory" />
     <tx:annotation-driven transaction-manager="transactionManager" />
-    <mvc:resources location="css/**" mapping="css/**"></mvc:resources>
+    <mvc:resources mapping="/resources/**" location="/resources/theme/"></mvc:resources>
+    <mvc:annotation-driven />
     
+    <bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+    <property name="port" value="587" />
+    <property name="username" value="ben114111@gmail.com" />
+    <property name="password" value="nam114111" />
+ 
+    <property name="javaMailProperties">
+        <!-- additional properties specific to JavaMail -->
+        <props>
+            <prop key="mail.transport.protocol">smtp</prop>
+            <prop key="mail.smtp.auth">true</prop>
+            <prop key="mail.smtp.starttls.enable">true</prop>
+        </props>
+    </property>
+	</bean>
 </beans>
-

@@ -2,43 +2,19 @@ package poly.dao;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import poly.bean.SanPham;
+import poly.generic.GenericDAO;
 
-@Component
+@Component("sanphamDAO")
 @Transactional
-public class SanPhamDAO {
+public class SanPhamDAO extends GenericDAO<SanPham>{
 
-	@Autowired
-	SessionFactory sessionFactory;
-
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-	
-	public Session getSession(){
-		return sessionFactory.getCurrentSession();
-	}
-	
-	public List<SanPham> layTatCaSanPham(){
-		return getSession().createQuery("from SanPham").list();
-	}
-	
-	public void luuHoacCapNhat(SanPham sp){
-		getSession().saveOrUpdate(sp);
-	}
-	
-	public void xoaSanPham(SanPham sp){
-		getSession().delete(sp);
-	}
-	
-	public SanPham laySanPhamBangMa(int ma){
-		return (SanPham)getSession().get(SanPham.class, ma);
-	}
-	
+	@Override
+	public List<SanPham> getAll() {
+		setClassType(SanPham.class);
+		return super.getAll();
+	}	
 }
