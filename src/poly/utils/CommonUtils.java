@@ -1,15 +1,23 @@
 package poly.utils;
 
 import java.lang.reflect.Field;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Logger;
 
+import javax.servlet.Registration;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 
+import poly.bean.SanPham;
 import poly.constants.SneakerGlobalConstant;
 
 public class CommonUtils {
@@ -109,4 +117,5 @@ public class CommonUtils {
 		message.setText("message");
 		mailSender.send(message);
 	}
+	
 }

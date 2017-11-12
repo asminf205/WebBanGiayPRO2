@@ -187,6 +187,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                              <div class="strip"></div>
                              <p>Welcome, please enter the following to continue.</p>
                              <p>If you have previously Login with us, <a href="#">Click Here</a></p>
+                             <a>${mess}</a> 
                              <form action="${pageContext.request.contextPath}/login">
                                  <h5>User Name:</h5>	
                                  <input type="text" value="" name="username">
@@ -201,7 +202,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <h3>New Registration</h3>
                             <div class="strip"></div>
                             <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-                            <a href="register.html" class="button">Create An Account</a>
+                            <a href="${pageContext.request.contextPath}/addUser" class="button">Create An Account</a>
                     </div>
                     <div class="clearfix"></div>
                 </div>

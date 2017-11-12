@@ -44,6 +44,72 @@ License URL: http://creativecommons.org/licenses/by/3.0/
               });
             });
             </script>
+            </style>
+            <script type="text/javascript">
+        var arrGT = ["Nam", "Nu"];
+        var arrTB = [];//rong
+        
+        function xoaTB() {
+            //xoa mang thong bao:
+            arrTB.length = 0;
+            var ul = document.getElementById('ulTB');
+            //xoa cac li trong ul:
+            while (ul.childNodes.length > 0) {
+                ul.removeChild(ul.childNodes[0]);
+            }
+        }
+        function hienThiTB() {
+            //dua ra thong bao:
+            var ul = document.getElementById('ulTB');
+            for (var i = 0; i < arrTB.length; i++) {
+                var li = document.createElement('li');
+                li.innerText = arrTB[i];
+                ul.appendChild(li);
+            }
+        }
+        function kiemTraHopLe() {
+            var hopLe = true;
+            xoaTB();
+            //kiem tra ho ten:
+            if (document.getElementById('hoten').value.length == 0) {
+                //them thong bao loi vao arrTB:
+                var kt = arrTB.length++;
+                arrTB[kt] = "Hay nhap ho ten";
+                hopLe = false;
+            }
+            //kiem tra email bang RegEx:
+            var rgE = /^\w+([\.-]?\w+)*@[A-Za-z0-9.-]+\.\w{2,3}$/;
+            if (!document.getElementById('email').value.match(rgE)) {
+                //them thong bao loi vao arrTB:
+                var kt = arrTB.length++;
+                arrTB[kt] = "Email khong hop le";
+                hopLe = false;
+            }
+            //kiem tra dien thoai:
+            //if (document.getElementById('txtDT').value.length < 8) {
+            //    //them thong bao loi vao arrTB:
+            //    var kt = arrTB.length++;
+            //    arrTB[kt] = "So dien thoai khong hop le";
+            //    hopLe = false;
+            //}
+            //kiem tra dien thoai bang RegEx:
+            var reg = /^\d{8,12}$/;
+            if (!document.getElementById('sdt').value.match(reg)) {
+                //them thong bao loi vao arrTB:
+                var kt = arrTB.length++;
+                arrTB[kt] = "So dien thoai khong hop le";
+                hopLe = false;
+            }
+            hienThiTB();
+            return hopLe;
+        }
+        window.onload = function () {
+            var dk = document.getElementById('btnDK');
+            dk.onclick = function () {
+                return kiemTraHopLe();
+            }
+        }
+    </script>
         <!-- //FlexSlider-->
     </head>
     <body>
@@ -185,32 +251,41 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<h3>Register Now</h3>
 				<p>Welcome, please enter the following details to continue.</p>
 				<p>If you have previously registered with us, <a href="#">click here</a></p>
-				 <form action="${pageContext.request.contextPath}/khachhang/moi"  method="post">
+				 <form name="frmDangKy" method="post">
+				 <form action="${pageContext.request.contextPath}/khachhang/moi" method="post">
+					<table>
+						<tr>
+							<td><ul id="ulTB">
+								<a></ul></td></a>
+						</tr>
+					</table>
 					<ul>
 						<li class="text-info">Name: </li>
-						<li><input type="text" value="" name="hoten"></li>
+						<li><input id="hoten" type="text" value="" name="hoten"></li>
 					</ul>
 					<ul>
 						<li class="text-info">User name: </li>
-						<li><input type="text" value="" name="username"></li>
+						<li><input id="username" type="text" value="" name="username"></li>
 					 </ul>	
 					 <ul>
 						<li class="text-info">Password: </li>
-						<li><input type="password" value="" name="password"></li>
+						<li><input id="password" type="password" value="" name="password"></li>
 					</ul>			 
 					<ul>
 						<li class="text-info">Email: </li>
-						<li><input type="text" value="" name="email"></li>
+						<li><input id="email" type="text" value="" name="email"></li>
 					</ul>
 					<ul>
 						<li class="text-info">Address:</li>
-						<li><input type="text" value="" name="diachi"></li>
+						<li><input id="diachi" type="text" value="" name="diachi"></li>
 					</ul>
 					<ul>
-						<li class="text-info">Mobile Number:</li>
-						<li><input type="text" value="" name="sdt"></li>
-					</ul>						
-					<input type="submit" value="Register Now">
+							<li class="text-info">Mobile Number:</li>
+						<li><input id="sdt" type="text" value="" name="sdt"></li>
+					</ul>
+					
+					<input id="btnDK" type="submit" value="Register Now">
+				</form>
 				</form>
 			</div>
 		</div>
@@ -263,5 +338,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </div>
             </div>
         </div>
+
     </body>
 </html>

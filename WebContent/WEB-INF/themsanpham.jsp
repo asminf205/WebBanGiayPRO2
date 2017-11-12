@@ -166,9 +166,10 @@
         <div class="head-bread">
             <div class="container">
                 <ol class="breadcrumb">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="register.html">LOGIN</a></li>
-                    <li class="active">REGISTER</li>
+				<li><a href="${pageContext.request.contextPath}/">Home</a></li>
+                  <li><a href="${pageContext.request.contextPath}/quanlysanpham">PRODUCTS</a></li>
+                    <li><a href="${pageContext.request.contextPath}/quanlykhachhang">USERS</a></li>
+  
                 </ol>
             </div>
         </div>
@@ -176,7 +177,7 @@
 	<div class="reg-form">
 		<div class="container">
 			<div class="reg">
-				<h3>Edit Product</h3>
+				<h3>Add Product</h3>
 				<p>Welcome, please enter the following details to continue.</p>
 				<p>If you have previously registered with us, <a href="#">click here</a></p>
 				 <form action="${pageContext.request.contextPath}/sanpham/moi" method="post" enctype="multipart/form-data" onsubmit="editImageName()">
@@ -209,7 +210,7 @@
 						<li class="text-info">Hãng:</li>
 						<li><input type="text"  name="hangsx"></li>
 					</ul>						
-					<input type="submit" value="Edit Now">
+					<input type="submit" value="Add Now">
 				</form>				
 			</div>
 		</div>

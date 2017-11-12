@@ -1,17 +1,15 @@
-
-<%-- 
-    Document   : index
-    Created on : Oct 15, 2016, 1:11:49 PM
-    Author     : HP
---%>
-
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-
 <html lang="en">
     <head>
-    <title>N-Air a E-commerce category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+    <title>N-Air a E-commerce category Flat Bootstrap Responsive Website Template | Checkout :: w3layouts</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="keywords" content="N-Air Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
@@ -32,6 +30,21 @@
 		<!--bootstrap-js-->
 			<script src="resources/js/bootstrap.min.js"></script>
 		<!--script-->
+         <!-- FlexSlider -->
+            <script src="resources/js/imagezoom.js"></script>
+              <script defer src="resources/js/jquery.flexslider.js"></script>
+            <link rel="stylesheet" href="resources/css/flexslider.css" type="text/css" media="screen" />
+
+            <script>
+            // Can also be used with $(document).ready()
+            $(window).load(function() {
+              $('.flexslider').flexslider({
+                animation: "slide",
+                controlNav: "thumbnails"
+              });
+            });
+            </script>
+        <!-- //FlexSlider-->
     </head>
     <body>
         <div class="header">
@@ -43,6 +56,15 @@
                     <div class="login-bars">
                         <a class="btn btn-default log-bar" href="${pageContext.request.contextPath}/addUser" >Sign up</a>
                         <a class="btn btn-default log-bar" href="${pageContext.request.contextPath}/signup" >Login</a>
+                        <div class="cart box_1">
+                            <a href="checkout.html">
+                            <h3>
+                                <div class="total">
+<span class="simpleCart_total"></span>(<span id="simpleCart_quantity" class="simpleCart_quantity"></span>)</div></h3>
+                            </a>
+                            <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
+                            <div class="clearfix"> </div>
+                        </div>	
                     </div>
         <div class="clearfix"></div>
                 </div>
@@ -58,7 +80,6 @@
                                 <span class="icon-bar"></span>
                             </button>
                         </div>
-                        <div class="clearfix"></div>
                         <!--/.navbar-header-->
 
                         <div class="collapse navbar-collapse collapse-pdng" id="bs-example-navbar-collapse-1">
@@ -148,237 +169,44 @@
                     <!--header-bottom-->
             </div>
         </div>
-               <div class="head-bread">
+        <div class="head-bread">
             <div class="container">
                 <ol class="breadcrumb">
-                    <li><a href="${pageContext.request.contextPath}/">Home</a></li>
-                  <li><a href="${pageContext.request.contextPath}/quanlysanpham">PRODUCTS</a></li>
-                    <li><a href="${pageContext.request.contextPath}/quanlykhachhang">USERS</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="register.html">LOGIN</a></li>
+                    <li class="active">REGISTER</li>
                 </ol>
             </div>
         </div>
-               <div class="sub-news">
-            <div class="container">
-        <form action="${pageContext.request.contextPath}/searchkh">
-          <h3>Sreach Users</h3>
-                <input type="text" name="username" class="sub-email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'User Name';}" >
-               <a class="btn btn-default subs-btn"  role="button">SEARCH</a>
-        </form>
-        </div>
-        </div>
-        <!-- check-out -->
-        <style type="text/css">
-        /* = body
-------------------------*/
-.description{
-  font-family: 'Vollkorn', serif;
-  text-align:center;
-  color:#ecf0f1;
-  text-shadow:0 0.1em 0.2em #008c8d;
-}
-/* = Scroll body
-------------------------*/
-::-webkit-scrollbar{
-  width:0.2em;
-}
-::-webkit-scrollbar-track{
-  background-color:#bdc3c7;
-}
-::-webkit-scrollbar-thumb{
-  background-color:#7f8c8d;
-}
-/* = table
-------------------------*/
-.box-table table{
-  border-collapse:collapse;
-  text-align:left;
-  width:100%;
-  margin:0;
-  padding:0;
-  background:#7f8c8d;
-  animation: responsive 5s infinite ease-in-out;
-}
-.box-table{
-  font:normal 12px/150% Arial, Helvetica, sans-serif;
-  overflow:hidden;
-  margin:0 auto;
-  display:block;
-  width:95%;
-  padding:2.5%;
-}
-.box-table table thead th{
-  background-color:#7f8c8d;
-  color:#bdc3c7;
-  text-align:center;
-  padding: 0.75em;
-  font-family: 'Vollkorn', serif;
-  font-weight: bold;
-  font-size: 1.5em;
-  height: 1.5em;
-  vertical-align: top;
-  border-left:0.25em double #95a5a6;
-
-}
-.box-table table tbody td,
-.box-table table tbody tr{
-  font-family: 'Vollkorn', serif;
-  font-size:1em;
-  border:none;
-  padding:1em;
-}
-.box-table table tbody tr:nth-child(odd){
-  background:#ecf0f1;
-  color:black;
-}
-.box-table table tbody tr:nth-child(even){
-  background:#bdc3c7;
-  color:black;
-}
-.box-table table tbody tr a{
-  text-decoration:none;
-  color:black;
-}
-.box-table table tbody tr a:hover{
-  color:#d35400;
-}
-.box-table .user-photo{
-  background:#bdc3c7;
-}
-.box-table .user-tumb{
-  width:6em;
-  height:6em;
-  padding:0;
-  display:table-cell;
-  text-align:center;
-  margin:0 auto;
-  -webkit-border-radius:100%;
-  -moz-border-radius:100%;
-  border-radius:100%;
-}
-
-
-/* = Responsive table
-------------------------*/
-
-/* http://elvery.net/demo/responsive-tables/  */
-@media only screen and (max-width: 800px){
-  .box-table table{
-    width:100%;
-    border-collapse:collapse;
-    border-spacing:0;
-  }
-  .box-table th,
-  .box-table td{
-    margin:0;
-    vertical-align:top;
-  }
-  .box-table th{
-    text-align:left;
-  }
-  .box-table table{
-    display:block;
-    position:relative;
-    width:100%;
-  }
-  .box-table thead{
-    display:block;
-    float:left;
-  }
-  .box-table tbody{
-    display:block;
-    width:auto;
-    position:relative;
-    overflow-x:auto;
-    white-space:nowrap;
-  }
-  .box-table thead tr{
-    display:block;
-  }
-  .box-table th{
-    display:block;
-    text-align:right;
-  }
-  .box-table tbody tr{
-    display:inline-block;
-    vertical-align:top;
-  }
-  .box-table td{
-    display:block;
-    min-height:1.25em;
-    text-align:left;
-  }
-  .box-table th{
-    border-bottom:0;
-    border-left:0;
-  }
-  .box-table td{
-    border-left:0;
-    border-right:0;
-    border-bottom:0;
-  }
-}
-/* = Error
-------------------------*/
-.error_table {
-  display: block;
-  background: #E05E5E;
-  color: #D1D1D1;
-  font-family: 'Vollkorn', serif;
-  text-align: center;
-  font-size: 3em;
-  width: 90%;
-  padding: 5%;
-}
-/* = Loader
-------------------------*/
-.loading_table{
-  background:#d35400;
-  color:#ecf0f1;
-  font-family: 'Vollkorn', serif;
-  text-align: center;
-  font-size: 1em;
-  width: 0;
-  display: block;
-  overflow: hidden;
-  height: 1em;
-  padding:0.5em;
-  animation: table_loader 10s infinite ease;
-}
-@keyframes table_loader{50%{width:100%}}
-@-webkit-keyframes table_loader{50%{width:100%}}
-@-moz-keyframes table_loader{50%{width:100%}}
-@-ms-keyframes table_loader{50%{width:100%}}
-@-o-keyframes table_loader{ 50%{width:100%}}
-</style>
-            <div class="box-table">
-			<table>
-<tr>
-			<td>MaKH</td>
-			<td>username</td>
-			<td>pass</td>
-			<td>hoten</td>
-			<td>sdt</td>
-			<td>dia chi</td>
-			<td>email</td>
-			<td>Edit</td>
-			<td>Delete</td>
-		</tr>
-		<c:forEach var="rows" items="${listKH}">		
-				<tr>
-					<td>${rows.ma}</td>
-					<td>${rows.username}</td>
-					<td>${rows.password}</td>
-					<td>${rows.hoten}</td>
-					<td>${rows.sdt}</td>
-					<td>${rows.diachi}</td>
-					<td>${rows.email}</td>				
-					<td><a href="editKH?ma=${rows.ma}">Edit</td>
-					<td><a href="deleteKH?ma=${rows.ma}">Delete</td>
-				</tr>		
-		</c:forEach>
-		</table>    
+        <!-- reg-form -->
+	<div class="reg-form">
+		<div class="container">
+			<div class="reg">
+				<h3>Information User</h3>
+				<p>Welcome, please enter the following details to continue.</p>
+				<p>If you have previously registered with us, <a href="#">click here</a></p>
+				 <form >
+					<ul>
+						<li class="text-info">Name: </li>
+						<li><input type="text" value="" name="hoten"></li>
+					</ul>
+					<ul>
+						<li class="text-info">Email: </li>
+						<li><input type="text" value="" name="email"></li>
+					</ul>
+					<ul>
+						<li class="text-info">Address:</li>
+						<li><input type="text" value="" name="diachi"></li>
+					</ul>
+					<ul>
+						<li class="text-info">Mobile Number:</li>
+						<li><input type="text" value="" name="sdt"></li>
+					</ul>						
+					<input type="submit" value="Order Now">
+				</form>
 			</div>
-			
+		</div>
+	</div>
         <div class="footer-grid">
             <div class="container">
                 <div class="col-md-2 re-ft-grd">
@@ -429,59 +257,3 @@
         </div>
     </body>
 </html>
-
-
-
-<%-- 
-    Document   : customers
-    Created on : Oct 15, 2016, 1:40:13 PM
-    Author     : HP
-
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <jsp:include page="menu.jsp"></jsp:include>
-         <h1>Khách Hàng</h1>
-	<form action="search">
-		nhập tên user:<input type="text" name="txtTenKH" value="" /> <input 
-		type="submit" name="action" value="Search" />
-	</form>
-	<br />
-	<table border="1">
-		<tr>
-			<td>MaKH</td>
-			<td>username</td>
-			<td>pass</td>
-			<td>hoten</td>
-			<td>sdt</td>
-			<td>dia chi</td>
-			<td>email</td>
-			<td>Edit</td>
-			<td>Delete</td>
-		</tr>
-		<c:forEach var="rows" items="${listKH}">		
-				<tr>
-					<td>${rows.ma}</td>
-					<td>${rows.username}</td>
-					<td>${rows.password}</td>
-					<td>${rows.hoten}</td>
-					<td>${rows.sdt}</td>
-					<td>${rows.diachi}</td>
-					<td>${rows.email}</td>				
-					<td><a href="editKH?ma=${rows.ma}">Edit</td>
-					<td><a href="deleteKH?ma=${rows.ma}">Delete</td>
-				</tr>		
-		</c:forEach>
-	</table>
-	<br />
-         <jsp:include page="main.jsp"></jsp:include>
-  <jsp:include page="footer.jsp"></jsp:include>
-    </body>
-</html>
---%>

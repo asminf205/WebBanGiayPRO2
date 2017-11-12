@@ -166,10 +166,10 @@
         <div class="head-bread">
             <div class="container">
                 <ol class="breadcrumb">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="register.html">LOGIN</a></li>
-                    <li class="active">REGISTER</li>
-                </ol>
+                    <li><a href="${pageContext.request.contextPath}/">Home</a></li>
+                  <li><a href="${pageContext.request.contextPath}/quanlysanpham">PRODUCTS</a></li>
+                    <li><a href="${pageContext.request.contextPath}/quanlykhachhang">USERS</a></li>
+               </ol>
             </div>
         </div>
         <!-- reg-form -->
@@ -190,7 +190,7 @@
 					</ul>
 					<ul>
 						<li class="text-info">User name: </li>
-						<li><input type="text" value="${kh.username}" name="username"></li>
+						<li><input type="text" value="${kh.username}" name="username" readonly></li>
 					 </ul>	
 					 <ul>
 						<li class="text-info">Password: </li>

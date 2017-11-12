@@ -166,9 +166,9 @@
         <div class="head-bread">
             <div class="container">
                 <ol class="breadcrumb">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="register.html">LOGIN</a></li>
-                    <li class="active">REGISTER</li>
+                <li><a href="${pageContext.request.contextPath}/">Home</a></li>
+                  <li><a href="${pageContext.request.contextPath}/quanlysanpham">PRODUCTS</a></li>
+                    <li><a href="${pageContext.request.contextPath}/quanlykhachhang">USERS</a></li>
                 </ol>
             </div>
         </div>

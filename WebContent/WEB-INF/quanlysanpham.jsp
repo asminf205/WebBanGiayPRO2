@@ -151,11 +151,19 @@
                <div class="head-bread">
             <div class="container">
                 <ol class="breadcrumb">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="products.hml">Products</a></li>
-                    <li class="active">CART</li>
-                </ol>
+                    <li><a href="${pageContext.request.contextPath}/">Home</a></li>
+                    <li><a href="${pageContext.request.contextPath}/quanlysanpham">PRODUCTS</a></li>
+                    <li><a href="${pageContext.request.contextPath}/quanlykhachhang">USERS</a></li>                </ol>
             </div>
+        </div>
+        <div class="sub-news">
+            <div class="container">
+        <form action="${pageContext.request.contextPath}/search">
+          <h3>Sreach Products</h3>
+                <input type="text" name="txtten" class="sub-email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" >
+               <a class="btn btn-default subs-btn" role="button">SEARCH</a>
+        </form>
+        </div>
         </div>
         <!-- check-out -->
         <style type="text/css">
@@ -365,8 +373,7 @@
 					<td>${rows.hangsx}</td>
 					
 					<td><a href="edit?ma=${rows.ma}">Edit</td>
-					<td><input type="hidden" name="txtMa" value="${rows.ma}" />
-						<input type="submit" name="action" value="Delete" /></td>
+					<td><a href="deleteSP?ma=${rows.ma}">Delete</td>
 				</tr>		
 		</c:forEach></table>    
 			</div>

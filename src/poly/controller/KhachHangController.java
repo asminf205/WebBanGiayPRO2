@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import poly.bean.KhachHang;
-import poly.common.QueryManager;
 import poly.constants.SneakerGlobalConstant;
+import poly.dao.KhachHangDAO;
 import poly.generic.IGenericDAO;
-import poly.utils.QueryUtils;
 
 @Controller
 public class KhachHangController {
@@ -88,7 +87,9 @@ public class KhachHangController {
 		 */
 		@RequestMapping("/searchkh")
 		public String searchKH(HttpServletRequest request,Model model) {
-			model.addAttribute("list", khachhangDAO.executeQuery(QueryUtils.createQueryWithCrit(new KhachHang(),new QueryManager(request.getParameterMap())) ) );
+			KhachHangDAO KH= new KhachHangDAO();
+			String nameSearch = request.getParameter("username");
+			model.addAttribute("listKH",  KH.searchLikeName(nameSearch) );
 			return SneakerGlobalConstant.QUAN_LY_KHACH_HANG_PAGE;
 		}
 		
@@ -103,7 +104,7 @@ public class KhachHangController {
 				int makh = Integer.parseInt(request.getParameter(SneakerGlobalConstant.OBJECT_ID));
 				KhachHang kh = khachhangDAO.getObj(makh);
 				khachhangDAO.deleteObject(kh);
-			return SneakerGlobalConstant.QUAN_LY_KHACH_HANG_PAGE;
+				return "redirect:/quanlykhachhang";
 		}
 
 		@RequestMapping(value="/addUser")
@@ -120,9 +121,11 @@ public class KhachHangController {
 		public String login(Model model, HttpServletRequest request){
 				String user=request.getParameter("username");
 				String pass=request.getParameter("password");
-				if(khachhangDAO.checkLogin(user, pass)){					
+				if(khachhangDAO.checkLogin(user, pass)){
+					
 			return "redirect:/";
 				}
+				model.addAttribute("mess", "Xin kiểm tra lại Username hoặc Password");
 				return SneakerGlobalConstant.SIGNUP;
 				
 		}
