@@ -185,7 +185,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<h3>Information User</h3>
 				<p>Welcome, please enter the following details to continue.</p>
 				<p>If you have previously registered with us, <a href="#">click here</a></p>
-				 <form >
+				 <form action="${pageContext.request.contextPath}/orderSuccess" >
 					<ul>
 						<li class="text-info">Name: </li>
 						<li><input type="text" value="" name="hoten"></li>

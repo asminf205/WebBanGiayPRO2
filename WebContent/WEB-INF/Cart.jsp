@@ -209,7 +209,7 @@
                             <div class="clearfix"></div>				 
                         </div>
                         <div class="clearfix"></div>
-                        <a class="order" href="#">Place Order</a>
+                        <a class="order" href="${pageContext.request.contextPath}/addUserOrder">Place Order</a>
                     </div>
                     <div class="clearfix"> </div>
                 </div>

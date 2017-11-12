@@ -63,5 +63,13 @@ public class CommonController {
 		CommonUtils.sendMail(sendMail);
 		return SneakerGlobalConstant.INDEX_PAGE;
 	}
-
+	
+	@RequestMapping(value = "/addUserOrder")
+	public String addUserOrder(Model model){
+		return "AddUserOrder";
+	}
+	@RequestMapping(value = "/orderSuccess")
+	public String orderSuccess(Model model){
+		return SneakerGlobalConstant.ORDER_SUCCESS;
+	}
 }

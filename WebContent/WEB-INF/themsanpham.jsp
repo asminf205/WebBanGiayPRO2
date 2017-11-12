@@ -38,6 +38,85 @@
               });
             });
             </script>
+              <script type="text/javascript">
+        var arrGT = ["Nam", "Nu"];
+        var arrTB = [];//rong
+        
+        function xoaTB() {
+            //xoa mang thong bao:
+            arrTB.length = 0;
+            var ul = document.getElementById('ulTB');
+            //xoa cac li trong ul:
+            while (ul.childNodes.length > 0) {
+                ul.removeChild(ul.childNodes[0]);
+            }
+        }
+        function hienThiTB() {
+            //dua ra thong bao:
+            var ul = document.getElementById('ulTB');
+            for (var i = 0; i < arrTB.length; i++) {
+                var li = document.createElement('li');
+                li.innerText = arrTB[i];
+                ul.appendChild(li);
+            }
+        }
+        function kiemTraHopLe() {
+            var hopLe = true;
+            xoaTB();
+            //kiem tra ho ten:
+            if (document.getElementById('ten').value.length == 0) {
+                //them thong bao loi vao arrTB:
+                var kt = arrTB.length++;
+                arrTB[kt] = "* Tên không được để trống";
+                hopLe = false;
+            }
+            
+            if (document.getElementById('mau').value.length == 0) {
+                //them thong bao loi vao arrTB:
+                var kt = arrTB.length++;
+                arrTB[kt] = "* Màu không được để trống";
+                hopLe = false;
+            }
+
+            //kiem tra giá bang RegEx:
+            var rgE = /([0-9])\w+/;
+            if (!document.getElementById('gia').value.match(rgE)) {
+                //them thong bao loi vao arrTB:
+                var kt = arrTB.length++;
+                arrTB[kt] = "* Gía không hợp lệ";
+                hopLe = false;
+            }
+            //kiem tra size bang RegEx:
+            var rg = /([0-9])\w+/;
+            if (!document.getElementById('size').value.match(rg)) {
+                //them thong bao loi vao arrTB:
+                var kt = arrTB.length++;
+                arrTB[kt] = "* Size không hợp lệ";
+                hopLe = false;
+            }
+            //kiem tra dien thoai:
+            //if (document.getElementById('txtDT').value.length < 8) {
+            //    //them thong bao loi vao arrTB:
+            //    var kt = arrTB.length++;
+            //    arrTB[kt] = "So dien thoai khong hop le";
+            //    hopLe = false;
+            //}
+            if (document.getElementById('hangsx').value.length == 0) {
+                //them thong bao loi vao arrTB:
+                var kt = arrTB.length++;
+                arrTB[kt] = "* Hãng không được để trống";
+                hopLe = false;
+            }
+            hienThiTB();
+            return hopLe;
+        }
+        window.onload = function () {
+            var dk = document.getElementById('btnDK');
+            dk.onclick = function () {
+                return kiemTraHopLe();
+            }
+        }
+    </script>
         <!-- //FlexSlider-->
     </head>
     <body>
@@ -181,13 +260,19 @@
 				<p>Welcome, please enter the following details to continue.</p>
 				<p>If you have previously registered with us, <a href="#">click here</a></p>
 				 <form action="${pageContext.request.contextPath}/sanpham/moi" method="post" enctype="multipart/form-data" onsubmit="editImageName()">
+					<table>
+						<tr>
+							<td><ul id="ulTB">
+								<a></ul></td></a>
+						</tr>
+					</table>
 					<ul>
 						<li class="text-info">Tên sản phẩm:: </li>
-						<li><input type="text"  name="ten"></li>
+						<li><input id="ten" type="text"  name="ten"></li>
 					</ul>
 					<ul>
 						<li class="text-info">Gía: </li>
-						<li><input type="text"  name="gia"></li>
+						<li><input id="gia" type="text"  name="gia"></li>
 					 </ul>	
 					 <ul>
 						<li class="text-info">Hinh: </li>
@@ -200,18 +285,18 @@
 					</ul>			 
 					<ul>
 						<li class="text-info">Màu: </li>
-						<li><input type="text"  name="mau"></li>
+						<li><input id="mau" type="text"  name="mau"></li>
 					</ul>
 					<ul>
 						<li class="text-info">Size:</li>
-						<li><input type="text"  name="size"></li>
+						<li><input id="size" type="text"  name="size"></li>
 					</ul>
 					<ul>
 						<li class="text-info">Hãng:</li>
-						<li><input type="text"  name="hangsx"></li>
+						<li><input id="hangsx" type="text"  name="hangsx"></li>
 					</ul>						
-					<input type="submit" value="Add Now">
-				</form>				
+					<input id="btnDK" type="submit" value="Add Now">
+				</form>			
 			</div>
 		</div>
 	</div>

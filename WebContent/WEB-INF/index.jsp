@@ -227,6 +227,15 @@
             <div class="clearfix"></div>
             </div>
         </div>
+            <div class="sub-news">
+            <div class="container">
+                <form action="${pageContext.request.contextPath}/searchSP">
+                    <h3>Search</h3>
+                <input type="text" name="ten" class="sub-email"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+                <a class="btn btn-default subs-btn" role="button">SEARCH</a>
+                </form>
+            </div>
+        </div>
         <div class="shop-grid">
             <div class="container">
             <c:forEach var="rows" items="${list}">
@@ -256,15 +265,7 @@
         <div class="clearfix"></div>
             </div>
         </div>
-        <div class="sub-news">
-            <div class="container">
-                <form>
-                    <h3>NewsLetter</h3>
-                <input type="text" class="sub-email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}">
-                <a class="btn btn-default subs-btn" href="${pageContext.request.contextPath}/sendMail" role="button">SUBSCRIBE</a>
-                </form>
-            </div>
-        </div>
+    
         <div class="footer-grid">
             <div class="container">
                 <div class="col-md-2 re-ft-grd">

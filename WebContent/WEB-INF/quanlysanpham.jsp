@@ -153,7 +153,8 @@
                 <ol class="breadcrumb">
                     <li><a href="${pageContext.request.contextPath}/">Home</a></li>
                     <li><a href="${pageContext.request.contextPath}/quanlysanpham">PRODUCTS</a></li>
-                    <li><a href="${pageContext.request.contextPath}/quanlykhachhang">USERS</a></li>                </ol>
+                    <li><a href="${pageContext.request.contextPath}/quanlykhachhang">USERS</a></li>  
+                    <li><a href="${pageContext.request.contextPath}/themsanpham">ADD PRODUCTS</a></li>              </ol>
             </div>
         </div>
         <div class="sub-news">

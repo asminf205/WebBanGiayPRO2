@@ -33,5 +33,7 @@ public class SneakerGlobalConstant {
 	
 	public static final String REGISTER = "AddUser";
 	public static final String SIGNUP = "signup";
+	public static final String ADD_USER_ORDER = "AddUserOrder";
+	public static final String ORDER_SUCCESS = "SuccessOrder";
 	
 }

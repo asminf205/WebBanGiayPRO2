@@ -74,7 +74,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             if (document.getElementById('hoten').value.length == 0) {
                 //them thong bao loi vao arrTB:
                 var kt = arrTB.length++;
-                arrTB[kt] = "Hay nhap ho ten";
+                arrTB[kt] = "* Tên không được để trống";
+                hopLe = false;
+            }
+            if (document.getElementById('diachi').value.length == 0) {
+                //them thong bao loi vao arrTB:
+                var kt = arrTB.length++;
+                arrTB[kt] = "* Địa chỉ không được để trống";
+                hopLe = false;
+            }
+            
+            if (document.getElementById('username').value.length == 0) {
+                //them thong bao loi vao arrTB:
+                var kt = arrTB.length++;
+                arrTB[kt] = "* Username không được để trống";
+                hopLe = false;
+            }
+            if (document.getElementById('password').value.length == 0) {
+                //them thong bao loi vao arrTB:
+                var kt = arrTB.length++;
+                arrTB[kt] = "* Password không được để trống";
                 hopLe = false;
             }
             //kiem tra email bang RegEx:
@@ -82,7 +101,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             if (!document.getElementById('email').value.match(rgE)) {
                 //them thong bao loi vao arrTB:
                 var kt = arrTB.length++;
-                arrTB[kt] = "Email khong hop le";
+                arrTB[kt] = "* Email không hợp lệ";
                 hopLe = false;
             }
             //kiem tra dien thoai:
@@ -97,7 +116,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             if (!document.getElementById('sdt').value.match(reg)) {
                 //them thong bao loi vao arrTB:
                 var kt = arrTB.length++;
-                arrTB[kt] = "So dien thoai khong hop le";
+                arrTB[kt] = "* Số điện thoại không hợp lệ";
                 hopLe = false;
             }
             hienThiTB();
@@ -251,7 +270,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<h3>Register Now</h3>
 				<p>Welcome, please enter the following details to continue.</p>
 				<p>If you have previously registered with us, <a href="#">click here</a></p>
-				 <form name="frmDangKy" method="post">
 				 <form action="${pageContext.request.contextPath}/khachhang/moi" method="post">
 					<table>
 						<tr>
@@ -285,7 +303,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</ul>
 					
 					<input id="btnDK" type="submit" value="Register Now">
-				</form>
 				</form>
 			</div>
 		</div>

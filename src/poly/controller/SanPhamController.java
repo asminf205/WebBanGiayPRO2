@@ -170,4 +170,11 @@ public class SanPhamController {
 			sanphamDAO.deleteObject(sp);
 			return "redirect:/quanlysanpham";
 	}
+	@RequestMapping("/searchSP")
+	public String searchSP(HttpServletRequest request, Model model) {
+		SanPhamDAO sp= new SanPhamDAO();
+		String nameSearch = request.getParameter("ten");
+		model.addAttribute("list", sp.searchLikeName(nameSearch));
+		return SneakerGlobalConstant.INDEX_PAGE;
+	}
 }

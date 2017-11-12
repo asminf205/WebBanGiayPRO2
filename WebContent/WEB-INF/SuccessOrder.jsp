@@ -155,7 +155,9 @@
                     <!--header-bottom-->
             </div>
         </div>
-
+		<h3>Qúy khách đã Order thành công
+		 	Chúng tôi sẽ liên lạc trong thời gian sớm nhất
+		 	Xin check mail để xem lại thông tin Order </h3>
         <div class="footer-grid">
             <div class="container">
                 <div class="col-md-2 re-ft-grd">
